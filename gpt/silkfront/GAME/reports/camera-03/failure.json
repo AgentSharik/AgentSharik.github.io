@@ -1,0 +1,150 @@
+{
+  "error": "AssertionError [ERR_ASSERTION]: edge pan uses displayed canvas rect\n    at sizes (file:///D:/JAM/SILKFRONT/tools/gamecheck/camera-sizes.mjs:25:10)\n    at async file:///D:/JAM/SILKFRONT/tools/gamecheck/camera-03.mjs:23:3",
+  "results": [
+    {
+      "mode": "MISSION",
+      "name": "WASD: 4 directions, 4 diagonals, opposite keys, release/no inertia",
+      "passed": true,
+      "data": [
+        {
+          "keys": "w",
+          "rate": 637.4076923076923
+        },
+        {
+          "keys": "a",
+          "rate": 627.7562551651878
+        },
+        {
+          "keys": "s",
+          "rate": 603.0468749999991
+        },
+        {
+          "keys": "d",
+          "rate": 614.6214510463179
+        },
+        {
+          "keys": "w+a",
+          "rate": 617.768892384133
+        },
+        {
+          "keys": "w+d",
+          "rate": 631.1029711335898
+        },
+        {
+          "keys": "s+a",
+          "rate": 636.4893617642184
+        },
+        {
+          "keys": "s+d",
+          "rate": 601.906614785992
+        }
+      ]
+    },
+    {
+      "mode": "MISSION",
+      "name": "All four edges; increasing speed near edge; mouse leave stops",
+      "passed": true,
+      "data": {
+        "edges": [
+          {
+            "edge": "left",
+            "dx": -185.0954978027338,
+            "dy": 0
+          },
+          {
+            "edge": "right",
+            "dx": 185.4664306640624,
+            "dy": 0
+          },
+          {
+            "edge": "top",
+            "dx": 0,
+            "dy": -185.15731994628925
+          },
+          {
+            "edge": "bottom",
+            "dx": 0,
+            "dy": 184.91003137206997
+          }
+        ],
+        "ramp": [
+          26.89271608023365,
+          303.9235543703175,
+          622.5692754658495
+        ]
+      }
+    },
+    {
+      "mode": "MISSION",
+      "name": "UI overlays, native inputs/select, contenteditable and focus clearing",
+      "passed": true
+    },
+    {
+      "mode": "MISSION",
+      "name": "Help modal resets held camera input",
+      "passed": true
+    },
+    {
+      "mode": "MISSION",
+      "name": "Real tab focus loss/reset and return; no stuck keys",
+      "passed": true
+    },
+    {
+      "mode": "MISSION",
+      "name": "Continuous single-press minimap drag, outside capture/clamp, release, selection, key arbitration",
+      "passed": true
+    },
+    {
+      "mode": "MISSION",
+      "name": "Focus loss cancels captured minimap and selection gestures",
+      "passed": true
+    },
+    {
+      "mode": "MISSION",
+      "name": "World limits: top-left and bottom-right with continued input",
+      "passed": true
+    },
+    {
+      "mode": "MISSION",
+      "name": "single/Shift/double/box selection and Ctrl+1/1; world-anchored box during WASD",
+      "passed": true
+    },
+    {
+      "mode": "MISSION",
+      "name": "RMB move; F+LMB attack-move; X stop; WASD never invokes unit commands",
+      "passed": true
+    },
+    {
+      "mode": "MISSION",
+      "name": "Q/T placement; real canvas building order survives minimap navigation",
+      "passed": true
+    },
+    {
+      "mode": "RESIZE",
+      "name": "1024x768: canvas bounds, minimap mapping, WASD/clamp",
+      "passed": true
+    },
+    {
+      "mode": "RESIZE",
+      "name": "720x640: canvas bounds, minimap mapping, WASD/clamp",
+      "passed": true
+    },
+    {
+      "mode": "RESIZE",
+      "name": "1440x300: canvas bounds, minimap mapping, WASD/clamp",
+      "passed": true
+    },
+    {
+      "mode": "RESIZE",
+      "name": "3600x2700: canvas bounds, minimap mapping, WASD/clamp",
+      "passed": true
+    },
+    {
+      "mode": "RESIZE",
+      "name": "1440x960: canvas bounds, minimap mapping, WASD/clamp",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "text": "340\n140\n18/20\n0:00 · пауза\nОрден Последнего Света\nПродолжить\n?\nТемп\n1×\n2×\n4×\nБез звука\nСдаться\nПослушник\nРабочий: строит и собирает (временная фигура — арта нет)\nЗдоровье 220/220Урон 9Броня 0Ближний бойСтроит\nАтака\nF\nСтоп\nX\nСдать груз\nC\nКазармы\n\n160 60\nQ\nЧасовня\n\n90 40\nT\nСторожевая башня\n\n110 60\nE\nМиссия 01 · Пепельная окраина\nПриказы без ПКМ\n\nТе же приказы, что на поле: выберите отряд и цель. Координаты — клетки карты (0–95, 0–71).\n\nРабочие\nСвободный рабочий\nАрмия\nГлавное здание\nЗдание\n— выбрать —\nЦитадель #1\nКазармы #2\nЧасовня #3\nСторожевая башня #4\nСторожевая башня #5 · строится\nДобывать эссенцию\nДобывать древесину\nX\nY\nИдти в клетку\nАтакующий марш в клетку\nПостроить в клетке\nПостроить рядом с базой\nДостроить здание\nТочка сбора на эссенции\nАтаковать базу врага\n\nРабочие: 6 · добывают: 0 · армия: 6 · Сторожевая башня: 0% · клетка 10,45"
+}

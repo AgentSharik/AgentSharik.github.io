@@ -1,0 +1,12 @@
+{
+  "name": "silkfront-artgen",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Procedural vector art generator for SILKFRONT (SVG -> PNG with alpha)",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "dependencies": {
+    "@resvg/resvg-js": "^2.6.2"
+  }
+}

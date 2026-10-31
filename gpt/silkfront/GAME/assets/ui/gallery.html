@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>SILKFRONT — Коллекция UI-ассетов в стиле Warcraft III и Spider Gothic</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #110e0c radial-gradient(circle at 50% 0%, #261e16 0%, #110e0c 70%);
+      color: #e8dfcf;
+      font-family: Georgia, "Times New Roman", serif;
+      padding: 30px 40px;
+      line-height: 1.5;
+    }
+    header {
+      border-bottom: 2px solid #b8892d;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    h1 {
+      font-size: 28px;
+      color: #ffd97d;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 4px #000;
+    }
+    .subtitle {
+      color: #a89f91;
+      font-size: 14px;
+      margin-top: 6px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: #2b2015;
+      border: 1px solid #7a5e2a;
+      border-radius: 4px;
+      color: #ffcf68;
+      font-size: 13px;
+      font-weight: bold;
+    }
+    .category-title {
+      font-size: 20px;
+      color: #e5b85c;
+      border-left: 4px solid #b8892d;
+      padding-left: 10px;
+      margin: 30px 0 16px;
+      text-shadow: 1px 1px 2px #000;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: linear-gradient(180deg, #241d16 0%, #17130f 100%);
+      border: 1.5px solid #5a462b;
+      border-radius: 6px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: #d4a344;
+      box-shadow: 0 6px 16px rgba(212,163,68,0.25);
+    }
+    .preview-box {
+      width: 100px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle, #2a221a 0%, #0d0a07 100%);
+      border: 1px solid #423423;
+      border-radius: 4px;
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .preview-box img {
+      max-width: 86px;
+      max-height: 86px;
+      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.8));
+    }
+    .card-title {
+      font-weight: bold;
+      font-size: 14px;
+      color: #ffdca3;
+      text-align: center;
+      margin-bottom: 4px;
+    }
+    .card-desc {
+      font-size: 11px;
+      color: #9c9282;
+      text-align: center;
+      margin-bottom: 10px;
+      min-height: 30px;
+    }
+    .card-links {
+      display: flex;
+      gap: 8px;
+      width: 100%;
+    }
+    .card-btn {
+      flex: 1;
+      text-align: center;
+      padding: 4px 6px;
+      background: #33271b;
+      border: 1px solid #695029;
+      color: #ffd97d;
+      text-decoration: none;
+      font-size: 11px;
+      border-radius: 3px;
+      transition: background 0.1s;
+    }
+    .card-btn:hover {
+      background: #4a3a29;
+      border-color: #e5b85c;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <h1>SILKFRONT — Комплект графических ассетов UI</h1>
+      <p class="subtitle">Вдохновлено классическим стилем Warcraft III и темной готикой «Древней Колонии» (паутина, янтарь, резной камень, кованое железо).</p>
+    </div>
+    <div class="badge">43 Vector SVG + 43 High-Res PNG</div>
+  </header>
+
+  <h2 class="category-title">1. Ресурсы (Эссенция, Древесина, Население, Шёлк, Пища, Кристаллы)</h2>
+  <div class="grid" id="grid-resources"></div>
+
+  <h2 class="category-title">2. Командная панель (Приказы и способности)</h2>
+  <div class="grid" id="grid-commands"></div>
+
+  <h2 class="category-title">3. Здания (Орден Последнего Света & Древняя Колония)</h2>
+  <div class="grid" id="grid-buildings"></div>
+
+  <h2 class="category-title">4. Юниты и Портреты</h2>
+  <div class="grid" id="grid-units"></div>
+
+  <h2 class="category-title">5. Статистика и Параметры отрядов</h2>
+  <div class="grid" id="grid-stats"></div>
+
+  <h2 class="category-title">6. Геральдика и гербы фракций</h2>
+  <div class="grid" id="grid-crests"></div>
+
+  <script>
+    const ITEMS = [
+      // Resources
+      { file: 'res_essence', cat: 'resources', ru: 'Эссенция / Кристаллы', desc: 'Светящийся фиолетовый кристаллический кластер' },
+      { file: 'res_wood', cat: 'resources', ru: 'Древесина / Брёвна', desc: 'Связка готических брёвен с железными обручами и мхом' },
+      { file: 'res_supply', cat: 'resources', ru: 'Население / Лимит', desc: 'Рыцарский шлем с золотым сиянием и паутиной' },
+      { file: 'res_silk', cat: 'resources', ru: 'Шёлк (Кокон)', desc: 'Сфера из плотной паутины с янтарной сердцевиной (Фото 2)' },
+      { file: 'res_meat', cat: 'resources', ru: 'Пища (Мясо)', desc: 'Свежий мраморный ломоть мяса / добыча (Фото 2)' },
+      { file: 'res_crystals', cat: 'resources', ru: 'Обсидиан / Кристаллы', desc: 'Острые обсидиановые осколки с фиолетовой дымкой (Фото 2)' },
+
+      // Commands
+      { file: 'cmd_attack', cat: 'commands', ru: 'Атака', desc: 'Скрещенные клинок и секира в боевом пламени' },
+      { file: 'cmd_stop', cat: 'commands', ru: 'Стоп', desc: 'Тяжелый кованый щит с золотой звездой' },
+      { file: 'cmd_return', cat: 'commands', ru: 'Сдать груз', desc: 'Обоз с ресурсами и золотая стрелка возврата' },
+      { file: 'cmd_cancel', cat: 'commands', ru: 'Отмена', desc: 'Красная сургучная печать с ярким крестом' },
+      { file: 'cmd_rally', cat: 'commands', ru: 'Точка сбора', desc: 'Золотой штандарт с кругами призыва на земле' },
+
+      // Buildings
+      { file: 'bld_citadel', cat: 'buildings', ru: 'Цитадель', desc: 'Главный готический замок с башнями и золотыми знамёнами' },
+      { file: 'bld_barracks', cat: 'buildings', ru: 'Казармы', desc: 'Каменная крепость с гербом и арсеналом' },
+      { file: 'bld_chapel', cat: 'buildings', ru: 'Часовня', desc: 'Соборный шпиль с сияющим крестом и витражом' },
+      { file: 'bld_tower', cat: 'buildings', ru: 'Сторожевая башня', desc: 'Оборонительная каменная вышка со стрелковыми бойницами' },
+      { file: 'bld_nest', cat: 'buildings', ru: 'Главное гнездо', desc: 'Органический курган из костей и паутины с огнями (Фото 2)' },
+      { file: 'bld_incubator', cat: 'buildings', ru: 'Инкубатор', desc: 'Кокон-хризалида на паучьих лапах (Фото 2)' },
+      { file: 'bld_workshop', cat: 'buildings', ru: 'Шелковая мастерская', desc: 'Паутинный шатёр со светящимися лампами (Фото 2)' },
+      { file: 'bld_webtower', cat: 'buildings', ru: 'Паутинная башня', desc: 'Готическая спираль в коконе с горящими глазами (Фото 2)' },
+      { file: 'bld_barricade', cat: 'buildings', ru: 'Паутинное заграждение', desc: 'Частокол из кольев, оплетенный липкой паутиной (Фото 2)' },
+
+      // Units
+      { file: 'unit_novice', cat: 'units', ru: 'Послушник (Рабочий)', desc: 'Монах в капюшоне со строительным молотом' },
+      { file: 'unit_swordsman', cat: 'units', ru: 'Мечник', desc: 'Пехотинец в бацинете со стальным палашом' },
+      { file: 'unit_crossbowman', cat: 'units', ru: 'Арбалетчик', desc: 'Стрелок в саллете с тяжелым арбалетом' },
+      { file: 'unit_knight', cat: 'units', ru: 'Рыцарь', desc: 'Благородный латник в топфхельме с золотыми эполетами' },
+      { file: 'unit_priest', cat: 'units', ru: 'Жрец', desc: 'Священнослужитель в митре с солнечным посохом' },
+      { file: 'unit_hunter', cat: 'units', ru: 'Охотник на чудовищ', desc: 'Следопыт в кожаном клобуке и ожерелье из клыков' },
+      { file: 'unit_spider_scout', cat: 'units', ru: 'Паук-разведчик', desc: 'Быстрый восьминогий паук с рубиновыми глазами' },
+      { file: 'unit_spider_fang', cat: 'units', ru: 'Паук-клык', desc: 'Хищный арахнид с ядовитыми жвалами' },
+      { file: 'unit_spider_weaver', cat: 'units', ru: 'Паук-ткач', desc: 'Шелкопряд с коконом (из Photo 2)' },
+      { file: 'unit_spider_spitter', cat: 'units', ru: 'Паук-плеватель', desc: 'Токсичный паук с кислотным брюшком' },
+      { file: 'unit_spider_armored', cat: 'units', ru: 'Панцирник', desc: 'Бронированный паук-таран с костяным налобником' },
+
+      // Stats
+      { file: 'stat_hp', cat: 'stats', ru: 'Здоровье (HP)', desc: 'Рубиновое сердце в оправе' },
+      { file: 'stat_dmg', cat: 'stats', ru: 'Урон', desc: 'Скрещенные клинки' },
+      { file: 'stat_armor', cat: 'stats', ru: 'Броня', desc: 'Кованый щит с золотой заклепкой' },
+      { file: 'stat_range', cat: 'stats', ru: 'Дальность боя', desc: 'Прицельная сетка со шкалой' },
+      { file: 'stat_heal', cat: 'stats', ru: 'Лечение', desc: 'Изумрудный крест исцеления' },
+      { file: 'stat_cargo', cat: 'stats', ru: 'Груз', desc: 'Сума / мешок с добычей' },
+
+      // Crests
+      { file: 'crest_humans', cat: 'crests', ru: 'Орден Последнего Света', desc: 'Солнечный клинок и золотые лучи заката' },
+      { file: 'crest_spiders', cat: 'crests', ru: 'Древняя Колония', desc: 'Восьмиконечная паутина и всевидящее око' }
+    ];
+
+    for (const item of ITEMS) {
+      const container = document.getElementById('grid-' + item.cat);
+      if (!container) continue;
+
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="preview-box">
+          <img src="${item.file}.svg" alt="${item.ru}" title="${item.ru}">
+        </div>
+        <div class="card-title">${item.ru}</div>
+        <div class="card-desc">${item.desc}</div>
+        <div class="card-links">
+          <a class="card-btn" href="${item.file}.svg" target="_blank">SVG</a>
+          <a class="card-btn" href="${item.file}.png" download="${item.file}.png">PNG</a>
+        </div>
+      `;
+      container.appendChild(card);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,395 @@
+{
+  "scope": "Automated camera and input regressions, not an independent human playtest. Read-only runtime probe; real mouse/keyboard events.",
+  "modes": [
+    "HUMANS",
+    "SPIDERS",
+    "MISSION"
+  ],
+  "results": [
+    {
+      "mode": "HUMANS",
+      "name": "WASD: 4 directions, 4 diagonals, opposite keys, release/no inertia",
+      "passed": true,
+      "data": [
+        {
+          "keys": "w",
+          "rate": 631.5746753857866
+        },
+        {
+          "keys": "a",
+          "rate": 620.2485966912102
+        },
+        {
+          "keys": "s",
+          "rate": 618.2688471101652
+        },
+        {
+          "keys": "d",
+          "rate": 609.7882352941184
+        },
+        {
+          "keys": "w+a",
+          "rate": 594.4540583916523
+        },
+        {
+          "keys": "w+d",
+          "rate": 621.4993953453554
+        },
+        {
+          "keys": "s+a",
+          "rate": 609.2725127516196
+        },
+        {
+          "keys": "s+d",
+          "rate": 596.951672803666
+        }
+      ]
+    },
+    {
+      "mode": "HUMANS",
+      "name": "All four edges; increasing speed near edge; mouse leave stops",
+      "passed": true,
+      "data": {
+        "edges": [
+          {
+            "edge": "left",
+            "dx": -185.77554138183586,
+            "dy": 0
+          },
+          {
+            "edge": "right",
+            "dx": 185.6518970947268,
+            "dy": 0
+          },
+          {
+            "edge": "top",
+            "dx": 0,
+            "dy": -185.52825280761726
+          },
+          {
+            "edge": "bottom",
+            "dx": 0,
+            "dy": 174.33844482421887
+          }
+        ],
+        "ramp": [
+          26.075652528548126,
+          308.1510934271928,
+          601.182258427392
+        ]
+      }
+    },
+    {
+      "mode": "HUMANS",
+      "name": "UI overlays, native inputs/select, contenteditable and focus clearing",
+      "passed": true
+    },
+    {
+      "mode": "HUMANS",
+      "name": "Help modal resets held camera input",
+      "passed": true
+    },
+    {
+      "mode": "HUMANS",
+      "name": "Real tab focus loss/reset and return; no stuck keys",
+      "passed": true
+    },
+    {
+      "mode": "HUMANS",
+      "name": "Continuous single-press minimap drag, outside capture/clamp, release, selection, key arbitration",
+      "passed": true
+    },
+    {
+      "mode": "HUMANS",
+      "name": "Focus loss cancels captured minimap and selection gestures",
+      "passed": true
+    },
+    {
+      "mode": "HUMANS",
+      "name": "World limits: top-left and bottom-right with continued input",
+      "passed": true
+    },
+    {
+      "mode": "HUMANS",
+      "name": "single/Shift/double/box selection and Ctrl+1/1; world-anchored box during WASD",
+      "passed": true
+    },
+    {
+      "mode": "HUMANS",
+      "name": "RMB move; F+LMB attack-move; X stop; WASD never invokes unit commands",
+      "passed": true
+    },
+    {
+      "mode": "HUMANS",
+      "name": "Q/T placement; real canvas building order survives minimap navigation",
+      "passed": true
+    },
+    {
+      "mode": "SPIDERS",
+      "name": "WASD: 4 directions, 4 diagonals, opposite keys, release/no inertia",
+      "passed": true,
+      "data": [
+        {
+          "keys": "w",
+          "rate": 642.9093738739489
+        },
+        {
+          "keys": "a",
+          "rate": 626.4817048953289
+        },
+        {
+          "keys": "s",
+          "rate": 627.8034916464309
+        },
+        {
+          "keys": "d",
+          "rate": 626.2956945875959
+        },
+        {
+          "keys": "w+a",
+          "rate": 629.8013782225693
+        },
+        {
+          "keys": "w+d",
+          "rate": 615.5573247239166
+        },
+        {
+          "keys": "s+a",
+          "rate": 628.7712206043375
+        },
+        {
+          "keys": "s+d",
+          "rate": 603.7797734697567
+        }
+      ]
+    },
+    {
+      "mode": "SPIDERS",
+      "name": "All four edges; increasing speed near edge; mouse leave stops",
+      "passed": true,
+      "data": {
+        "edges": [
+          {
+            "edge": "left",
+            "dx": -185.52825280761658,
+            "dy": 0
+          },
+          {
+            "edge": "right",
+            "dx": 186.08465209960946,
+            "dy": 0
+          },
+          {
+            "edge": "top",
+            "dx": 0,
+            "dy": -175.63670983886675
+          },
+          {
+            "edge": "bottom",
+            "dx": 0,
+            "dy": 185.40460852050762
+          }
+        ],
+        "ramp": [
+          26.702931839898685,
+          301.23781675246653,
+          614.5244302844683
+        ]
+      }
+    },
+    {
+      "mode": "SPIDERS",
+      "name": "UI overlays, native inputs/select, contenteditable and focus clearing",
+      "passed": true
+    },
+    {
+      "mode": "SPIDERS",
+      "name": "Help modal resets held camera input",
+      "passed": true
+    },
+    {
+      "mode": "SPIDERS",
+      "name": "Real tab focus loss/reset and return; no stuck keys",
+      "passed": true
+    },
+    {
+      "mode": "SPIDERS",
+      "name": "Continuous single-press minimap drag, outside capture/clamp, release, selection, key arbitration",
+      "passed": true
+    },
+    {
+      "mode": "SPIDERS",
+      "name": "Focus loss cancels captured minimap and selection gestures",
+      "passed": true
+    },
+    {
+      "mode": "SPIDERS",
+      "name": "World limits: top-left and bottom-right with continued input",
+      "passed": true
+    },
+    {
+      "mode": "SPIDERS",
+      "name": "single/Shift/double/box selection and Ctrl+1/1; world-anchored box during WASD",
+      "passed": true
+    },
+    {
+      "mode": "SPIDERS",
+      "name": "RMB move; F+LMB attack-move; X stop; WASD never invokes unit commands",
+      "passed": true
+    },
+    {
+      "mode": "SPIDERS",
+      "name": "Q/T placement; real canvas building order survives minimap navigation",
+      "passed": true
+    },
+    {
+      "mode": "MISSION",
+      "name": "WASD: 4 directions, 4 diagonals, opposite keys, release/no inertia",
+      "passed": true,
+      "data": [
+        {
+          "keys": "w",
+          "rate": 610.5250783984242
+        },
+        {
+          "keys": "a",
+          "rate": 600.7751937984492
+        },
+        {
+          "keys": "s",
+          "rate": 615.3142403129283
+        },
+        {
+          "keys": "d",
+          "rate": 619.0139165009946
+        },
+        {
+          "keys": "w+a",
+          "rate": 615.7991230688616
+        },
+        {
+          "keys": "w+d",
+          "rate": 620.9955840433323
+        },
+        {
+          "keys": "s+a",
+          "rate": 607.3717195172708
+        },
+        {
+          "keys": "s+d",
+          "rate": 593.7633525643238
+        }
+      ]
+    },
+    {
+      "mode": "MISSION",
+      "name": "All four edges; increasing speed near edge; mouse leave stops",
+      "passed": true,
+      "data": {
+        "edges": [
+          {
+            "edge": "left",
+            "dx": -185.46643066406227,
+            "dy": 0
+          },
+          {
+            "edge": "right",
+            "dx": 185.5282528076167,
+            "dy": 0
+          },
+          {
+            "edge": "top",
+            "dx": 0,
+            "dy": -185.77554138183575
+          },
+          {
+            "edge": "bottom",
+            "dx": 0,
+            "dy": 185.46643066406227
+          }
+        ],
+        "ramp": [
+          26.622876416780045,
+          312.1852971045421,
+          605.3081941204118
+        ]
+      }
+    },
+    {
+      "mode": "MISSION",
+      "name": "UI overlays, native inputs/select, contenteditable and focus clearing",
+      "passed": true
+    },
+    {
+      "mode": "MISSION",
+      "name": "Help modal resets held camera input",
+      "passed": true
+    },
+    {
+      "mode": "MISSION",
+      "name": "Real tab focus loss/reset and return; no stuck keys",
+      "passed": true
+    },
+    {
+      "mode": "MISSION",
+      "name": "Continuous single-press minimap drag, outside capture/clamp, release, selection, key arbitration",
+      "passed": true
+    },
+    {
+      "mode": "MISSION",
+      "name": "Focus loss cancels captured minimap and selection gestures",
+      "passed": true
+    },
+    {
+      "mode": "MISSION",
+      "name": "World limits: top-left and bottom-right with continued input",
+      "passed": true
+    },
+    {
+      "mode": "MISSION",
+      "name": "single/Shift/double/box selection and Ctrl+1/1; world-anchored box during WASD",
+      "passed": true
+    },
+    {
+      "mode": "MISSION",
+      "name": "RMB move; F+LMB attack-move; X stop; WASD never invokes unit commands",
+      "passed": true
+    },
+    {
+      "mode": "MISSION",
+      "name": "Q/T placement; real canvas building order survives minimap navigation",
+      "passed": true
+    },
+    {
+      "mode": "RESIZE",
+      "name": "1024x768: canvas bounds, minimap mapping, WASD/clamp",
+      "passed": true
+    },
+    {
+      "mode": "RESIZE",
+      "name": "720x640: canvas bounds, minimap mapping, WASD/clamp",
+      "passed": true
+    },
+    {
+      "mode": "RESIZE",
+      "name": "1440x300: canvas bounds, minimap mapping, WASD/clamp",
+      "passed": true
+    },
+    {
+      "mode": "RESIZE",
+      "name": "3600x2700: canvas bounds, minimap mapping, WASD/clamp",
+      "passed": true
+    },
+    {
+      "mode": "RESIZE",
+      "name": "1440x960: canvas bounds, minimap mapping, WASD/clamp",
+      "passed": true
+    },
+    {
+      "mode": "SCALE",
+      "name": "Scaled minimap borders/content and canvas edge navigation",
+      "passed": true
+    }
+  ],
+  "errors": []
+}

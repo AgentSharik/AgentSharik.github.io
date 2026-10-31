@@ -1,0 +1,11 @@
+{
+  "name": "silkfront-game",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "SILKFRONT RTS prototype (Canvas 2D, no dependencies)",
+  "scripts": {
+    "start": "node serve.js",
+    "test": "node --test tests/*.test.js"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "results": [
+    {
+      "fac": "HUMANS",
+      "buildingId": "1379",
+      "status": "Рабочие: 6 · добывают: 4 · армия: 1",
+      "passed": true
+    },
+    {
+      "fac": "SPIDERS",
+      "buildingId": "1379",
+      "status": "Рабочие: 6 · добывают: 4 · армия: 1",
+      "passed": true
+    }
+  ],
+  "errors": []
+}

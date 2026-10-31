@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 112 112" width="112" height="112">
+<defs>
+  <!-- Silver Metal (Multi-stop reflective metallic gradient) -->
+  <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#f5f7fa"/>
+    <stop offset="22%" stop-color="#d6dce4"/>
+    <stop offset="48%" stop-color="#8b95a3"/>
+    <stop offset="54%" stop-color="#525a66"/>
+    <stop offset="78%" stop-color="#b8c2cf"/>
+    <stop offset="100%" stop-color="#3c424c"/>
+  </linearGradient>
+  <linearGradient id="silverGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#ffffff"/>
+    <stop offset="25%" stop-color="#dfe5ed"/>
+    <stop offset="55%" stop-color="#8d97a5"/>
+    <stop offset="80%" stop-color="#49505c"/>
+    <stop offset="100%" stop-color="#aab4c2"/>
+  </linearGradient>
+  <!-- Cold Steel -->
+  <linearGradient id="bronzeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#9aa4b2"/>
+    <stop offset="50%" stop-color="#565f6b"/>
+    <stop offset="100%" stop-color="#252930"/>
+  </linearGradient>
+  <linearGradient id="ironGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#7c8591"/>
+    <stop offset="45%" stop-color="#474e58"/>
+    <stop offset="100%" stop-color="#1d2026"/>
+  </linearGradient>
+  <!-- Light Gothic Stone & Dark Graphite -->
+  <linearGradient id="stoneGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#484b52"/>
+    <stop offset="50%" stop-color="#2c2f35"/>
+    <stop offset="100%" stop-color="#16181c"/>
+  </linearGradient>
+  <linearGradient id="stoneLightGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#5a5e66"/>
+    <stop offset="50%" stop-color="#383b42"/>
+    <stop offset="100%" stop-color="#1d1f24"/>
+  </linearGradient>
+  <!-- Deep Burgundy & Ivory -->
+  <linearGradient id="crimsonGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#b82c3b"/>
+    <stop offset="45%" stop-color="#7c1823"/>
+    <stop offset="85%" stop-color="#4a0c14"/>
+    <stop offset="100%" stop-color="#240509"/>
+  </linearGradient>
+  <linearGradient id="amberGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#fbf7ee"/>
+    <stop offset="45%" stop-color="#e3dac8"/>
+    <stop offset="85%" stop-color="#9e9583"/>
+    <stop offset="100%" stop-color="#4d473d"/>
+  </linearGradient>
+  <!-- Nerubian Obsidian, Chitin & Bioluminescent Turquoise -->
+  <linearGradient id="chitinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#462b5e"/>
+    <stop offset="48%" stop-color="#261638"/>
+    <stop offset="100%" stop-color="#0d0714"/>
+  </linearGradient>
+  <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#d6fff9"/>
+    <stop offset="38%" stop-color="#47c3b4"/>
+    <stop offset="78%" stop-color="#166b64"/>
+    <stop offset="100%" stop-color="#072826"/>
+  </linearGradient>
+  <linearGradient id="essenceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#e4d4ff"/>
+    <stop offset="30%" stop-color="#b582ff"/>
+    <stop offset="70%" stop-color="#793eed"/>
+    <stop offset="100%" stop-color="#3b1180"/>
+  </linearGradient>
+  <linearGradient id="woodGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#ba864e"/>
+    <stop offset="50%" stop-color="#7d5229"/>
+    <stop offset="100%" stop-color="#442a12"/>
+  </linearGradient>
+  <linearGradient id="silkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#ffffff"/>
+    <stop offset="40%" stop-color="#d6dce4"/>
+    <stop offset="75%" stop-color="#8e97a3"/>
+    <stop offset="100%" stop-color="#4e555f"/>
+  </linearGradient>
+  <radialGradient id="vignette" cx="50%" cy="50%" r="50%">
+    <stop offset="58%" stop-color="transparent"/>
+    <stop offset="100%" stop-color="rgba(0,0,0,0.88)"/>
+  </radialGradient>
+  <filter id="glowGold" x="-20%" y="-20%" width="140%" height="140%">
+    <feGaussianBlur stdDeviation="2" result="blur"/>
+    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+  </filter>
+  <filter id="glowTeal" x="-20%" y="-20%" width="140%" height="140%">
+    <feGaussianBlur stdDeviation="2.5" result="blur"/>
+    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+  </filter>
+  <filter id="glowPurple" x="-20%" y="-20%" width="140%" height="140%">
+    <feGaussianBlur stdDeviation="3" result="blur"/>
+    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+  </filter>
+</defs>
+
+  <rect x="2" y="2" width="108" height="108" rx="8" fill="url(#chitinGrad)" stroke="url(#tealGrad)" stroke-width="2.8"/>
+  <rect x="8" y="8" width="96" height="96" rx="5" fill="#0b0712" stroke="#563478" stroke-width="2"/>
+  <path d="M8 32 Q24 10 56 10 Q88 10 104 32" stroke="url(#tealGrad)" stroke-width="2" fill="none"/>
+  <!-- Chitin Mandible Spines -->
+  <path d="M2 24 L14 8 L24 2 M110 24 L98 8 L88 2 M2 88 L14 104 L24 110 M110 88 L98 104 L88 110" stroke="#47c3b4" stroke-width="2" fill="none"/>
+  <circle cx="56" cy="9" r="3.5" fill="#b8fff4" filter="url(#glowTeal)"/>
+</svg>
