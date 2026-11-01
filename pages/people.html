@@ -1,159 +1,1129 @@
-<!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><title>SILKFRONT — Unit Gallery (review gate 01)</title>
-<style>
-:root{--bg:#101118;--panel:#1a1c25;--line:#2c2f3b;--txt:#d6dce4;--dim:#8a94a8;--gold:#b08d4a;--teal:#47c3b4;--bord:#8a2c38}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.45 system-ui,Segoe UI,sans-serif}
-header{padding:18px 24px;border-bottom:1px solid var(--line);display:flex;gap:24px;align-items:baseline;flex-wrap:wrap}
-h1{margin:0;font-size:20px;letter-spacing:.12em}h1 b{color:var(--gold)}.note{color:var(--dim);font-size:12px}
-nav{display:flex;flex-wrap:wrap;gap:6px;padding:12px 24px;border-bottom:1px solid var(--line)}
-nav button{background:var(--panel);color:var(--txt);border:1px solid var(--line);padding:6px 10px;border-radius:4px;cursor:pointer}
-nav button.h{border-left:3px solid var(--bord)}nav button.s{border-left:3px solid var(--teal)}nav button.on{background:#2a2d3a;outline:1px solid var(--gold)}
-main{padding:20px 24px;display:grid;gap:20px}
-.card{min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:16px}
-.card h2{margin:0 0 4px;font-size:17px}.card h3{margin:0 0 10px;font-size:13px;color:var(--dim);font-weight:500}
-.row{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start}
-.st{text-align:center}.st canvas{display:block;border:1px solid var(--line);border-radius:4px}
-.st span{display:block;font-size:12px;color:var(--dim);margin-top:4px}
-.ground{background:radial-gradient(ellipse at 50% 80%,#3a4150 0,#262a35 45%,#1a1c25 80%)}
-.ground.light{background:#7f8a72}.ground.chk{background:repeating-conic-gradient(#2a2d36 0 25%,#20222a 0 50%) 0 0/16px 16px}
-.sheet{max-width:100%;overflow:auto;border:1px solid var(--line);border-radius:4px}
-.sheet img{display:block;image-rendering:auto}
-.tools{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:8px 0 14px;color:var(--dim);font-size:12px}
-.tools select,.tools input{background:#11131a;color:var(--txt);border:1px solid var(--line);border-radius:3px;padding:3px}
-a{color:var(--teal)}table{border-collapse:collapse;font-size:12px}td,th{border:1px solid var(--line);padding:4px 8px;text-align:left}
-#field canvas{width:100%;border-radius:4px;border:1px solid var(--line)}
-</style></head><body>
-<header><h1>SILK<b>FRONT</b> · юниты</h1>
-<span class="note">Контрольный этап 01 · 10 боевых юнитов · процедурные SVG → PNG · один ракурс, взгляд вправо (+X)</span></header>
-<nav id="nav"></nav>
-<main id="main"></main>
-<script>
-const DATA = {"cell":288,"pivot":[144,228],"states":{"idle":{"frames":6,"fps":6,"loop":true},"walk":{"frames":8,"fps":12,"loop":true},"attack":{"frames":6,"fps":12,"loop":false},"hit":{"frames":3,"fps":12,"loop":false},"death":{"frames":6,"fps":10,"loop":false}},"units":[{"id":"human_swordsman","ru":"Мечник","role":"Основная ближняя пехота","fac":"HUMANS","dir":"../HUMANS/UNITS/human_swordsman","svgDir":"../../ART_SRC/HUMANS/UNITS/human_swordsman","preview":"../HUMANS/UNITS/human_swordsman.png","clipped":0,"height":116,"atlas":{"frames":{"idle_00":{"frame":{"x":0,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_01":{"frame":{"x":288,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_02":{"frame":{"x":576,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_03":{"frame":{"x":864,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_04":{"frame":{"x":1152,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_05":{"frame":{"x":1440,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_00":{"frame":{"x":0,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_01":{"frame":{"x":288,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_02":{"frame":{"x":576,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_03":{"frame":{"x":864,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_04":{"frame":{"x":1152,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_05":{"frame":{"x":1440,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_06":{"frame":{"x":1728,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_07":{"frame":{"x":2016,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_00":{"frame":{"x":0,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_01":{"frame":{"x":288,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_02":{"frame":{"x":576,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_03":{"frame":{"x":864,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_04":{"frame":{"x":1152,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_05":{"frame":{"x":1440,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_00":{"frame":{"x":0,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_01":{"frame":{"x":288,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_02":{"frame":{"x":576,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_00":{"frame":{"x":0,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_01":{"frame":{"x":288,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_02":{"frame":{"x":576,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_03":{"frame":{"x":864,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_04":{"frame":{"x":1152,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_05":{"frame":{"x":1440,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}}},"animations":{"idle":{"frames":["idle_00","idle_01","idle_02","idle_03","idle_04","idle_05"],"fps":6,"loop":true},"walk":{"frames":["walk_00","walk_01","walk_02","walk_03","walk_04","walk_05","walk_06","walk_07"],"fps":12,"loop":true},"attack":{"frames":["attack_00","attack_01","attack_02","attack_03","attack_04","attack_05"],"fps":12,"loop":false},"hit":{"frames":["hit_00","hit_01","hit_02"],"fps":12,"loop":false},"death":{"frames":["death_00","death_01","death_02","death_03","death_04","death_05"],"fps":10,"loop":false}},"meta":{"app":"silkfront-artgen","image":"human_swordsman_sheet.png","size":{"w":2304,"h":1440},"scale":"1","facing":"+x (right)","pivotPx":[144,228]}}},{"id":"human_crossbowman","ru":"Арбалетчик","role":"Дальний бой","fac":"HUMANS","dir":"../HUMANS/UNITS/human_crossbowman","svgDir":"../../ART_SRC/HUMANS/UNITS/human_crossbowman","preview":"../HUMANS/UNITS/human_crossbowman.png","clipped":0,"height":76,"atlas":{"frames":{"idle_00":{"frame":{"x":0,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_01":{"frame":{"x":288,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_02":{"frame":{"x":576,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_03":{"frame":{"x":864,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_04":{"frame":{"x":1152,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_05":{"frame":{"x":1440,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_00":{"frame":{"x":0,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_01":{"frame":{"x":288,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_02":{"frame":{"x":576,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_03":{"frame":{"x":864,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_04":{"frame":{"x":1152,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_05":{"frame":{"x":1440,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_06":{"frame":{"x":1728,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_07":{"frame":{"x":2016,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_00":{"frame":{"x":0,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_01":{"frame":{"x":288,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_02":{"frame":{"x":576,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_03":{"frame":{"x":864,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_04":{"frame":{"x":1152,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_05":{"frame":{"x":1440,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_00":{"frame":{"x":0,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_01":{"frame":{"x":288,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_02":{"frame":{"x":576,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_00":{"frame":{"x":0,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_01":{"frame":{"x":288,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_02":{"frame":{"x":576,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_03":{"frame":{"x":864,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_04":{"frame":{"x":1152,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_05":{"frame":{"x":1440,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}}},"animations":{"idle":{"frames":["idle_00","idle_01","idle_02","idle_03","idle_04","idle_05"],"fps":6,"loop":true},"walk":{"frames":["walk_00","walk_01","walk_02","walk_03","walk_04","walk_05","walk_06","walk_07"],"fps":12,"loop":true},"attack":{"frames":["attack_00","attack_01","attack_02","attack_03","attack_04","attack_05"],"fps":12,"loop":false},"hit":{"frames":["hit_00","hit_01","hit_02"],"fps":12,"loop":false},"death":{"frames":["death_00","death_01","death_02","death_03","death_04","death_05"],"fps":10,"loop":false}},"meta":{"app":"silkfront-artgen","image":"human_crossbowman_sheet.png","size":{"w":2304,"h":1440},"scale":"1","facing":"+x (right)","pivotPx":[144,228]}}},{"id":"human_priest","ru":"Жрец Ордена","role":"Поддержка и лечение","fac":"HUMANS","dir":"../HUMANS/UNITS/human_priest","svgDir":"../../ART_SRC/HUMANS/UNITS/human_priest","preview":"../HUMANS/UNITS/human_priest.png","clipped":0,"height":154,"atlas":{"frames":{"idle_00":{"frame":{"x":0,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_01":{"frame":{"x":288,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_02":{"frame":{"x":576,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_03":{"frame":{"x":864,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_04":{"frame":{"x":1152,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_05":{"frame":{"x":1440,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_00":{"frame":{"x":0,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_01":{"frame":{"x":288,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_02":{"frame":{"x":576,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_03":{"frame":{"x":864,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_04":{"frame":{"x":1152,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_05":{"frame":{"x":1440,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_06":{"frame":{"x":1728,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_07":{"frame":{"x":2016,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_00":{"frame":{"x":0,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_01":{"frame":{"x":288,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_02":{"frame":{"x":576,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_03":{"frame":{"x":864,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_04":{"frame":{"x":1152,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_05":{"frame":{"x":1440,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_00":{"frame":{"x":0,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_01":{"frame":{"x":288,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_02":{"frame":{"x":576,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_00":{"frame":{"x":0,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_01":{"frame":{"x":288,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_02":{"frame":{"x":576,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_03":{"frame":{"x":864,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_04":{"frame":{"x":1152,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_05":{"frame":{"x":1440,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}}},"animations":{"idle":{"frames":["idle_00","idle_01","idle_02","idle_03","idle_04","idle_05"],"fps":6,"loop":true},"walk":{"frames":["walk_00","walk_01","walk_02","walk_03","walk_04","walk_05","walk_06","walk_07"],"fps":12,"loop":true},"attack":{"frames":["attack_00","attack_01","attack_02","attack_03","attack_04","attack_05"],"fps":12,"loop":false},"hit":{"frames":["hit_00","hit_01","hit_02"],"fps":12,"loop":false},"death":{"frames":["death_00","death_01","death_02","death_03","death_04","death_05"],"fps":10,"loop":false}},"meta":{"app":"silkfront-artgen","image":"human_priest_sheet.png","size":{"w":2304,"h":1440},"scale":"1","facing":"+x (right)","pivotPx":[144,228]}}},{"id":"human_monster_hunter","ru":"Охотник на чудовищ","role":"Против крупных существ","fac":"HUMANS","dir":"../HUMANS/UNITS/human_monster_hunter","svgDir":"../../ART_SRC/HUMANS/UNITS/human_monster_hunter","preview":"../HUMANS/UNITS/human_monster_hunter.png","clipped":0,"height":145,"atlas":{"frames":{"idle_00":{"frame":{"x":0,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_01":{"frame":{"x":288,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_02":{"frame":{"x":576,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_03":{"frame":{"x":864,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_04":{"frame":{"x":1152,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_05":{"frame":{"x":1440,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_00":{"frame":{"x":0,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_01":{"frame":{"x":288,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_02":{"frame":{"x":576,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_03":{"frame":{"x":864,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_04":{"frame":{"x":1152,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_05":{"frame":{"x":1440,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_06":{"frame":{"x":1728,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_07":{"frame":{"x":2016,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_00":{"frame":{"x":0,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_01":{"frame":{"x":288,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_02":{"frame":{"x":576,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_03":{"frame":{"x":864,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_04":{"frame":{"x":1152,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_05":{"frame":{"x":1440,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_00":{"frame":{"x":0,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_01":{"frame":{"x":288,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_02":{"frame":{"x":576,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_00":{"frame":{"x":0,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_01":{"frame":{"x":288,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_02":{"frame":{"x":576,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_03":{"frame":{"x":864,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_04":{"frame":{"x":1152,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_05":{"frame":{"x":1440,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}}},"animations":{"idle":{"frames":["idle_00","idle_01","idle_02","idle_03","idle_04","idle_05"],"fps":6,"loop":true},"walk":{"frames":["walk_00","walk_01","walk_02","walk_03","walk_04","walk_05","walk_06","walk_07"],"fps":12,"loop":true},"attack":{"frames":["attack_00","attack_01","attack_02","attack_03","attack_04","attack_05"],"fps":12,"loop":false},"hit":{"frames":["hit_00","hit_01","hit_02"],"fps":12,"loop":false},"death":{"frames":["death_00","death_01","death_02","death_03","death_04","death_05"],"fps":10,"loop":false}},"meta":{"app":"silkfront-artgen","image":"human_monster_hunter_sheet.png","size":{"w":2304,"h":1440},"scale":"1","facing":"+x (right)","pivotPx":[144,228]}}},{"id":"human_knight","ru":"Рыцарь Последнего Света","role":"Элитный тяжёлый боец","fac":"HUMANS","dir":"../HUMANS/UNITS/human_knight","svgDir":"../../ART_SRC/HUMANS/UNITS/human_knight","preview":"../HUMANS/UNITS/human_knight.png","clipped":0,"height":151,"atlas":{"frames":{"idle_00":{"frame":{"x":0,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_01":{"frame":{"x":288,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_02":{"frame":{"x":576,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_03":{"frame":{"x":864,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_04":{"frame":{"x":1152,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_05":{"frame":{"x":1440,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_00":{"frame":{"x":0,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_01":{"frame":{"x":288,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_02":{"frame":{"x":576,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_03":{"frame":{"x":864,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_04":{"frame":{"x":1152,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_05":{"frame":{"x":1440,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_06":{"frame":{"x":1728,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_07":{"frame":{"x":2016,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_00":{"frame":{"x":0,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_01":{"frame":{"x":288,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_02":{"frame":{"x":576,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_03":{"frame":{"x":864,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_04":{"frame":{"x":1152,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_05":{"frame":{"x":1440,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_00":{"frame":{"x":0,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_01":{"frame":{"x":288,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_02":{"frame":{"x":576,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_00":{"frame":{"x":0,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_01":{"frame":{"x":288,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_02":{"frame":{"x":576,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_03":{"frame":{"x":864,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_04":{"frame":{"x":1152,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_05":{"frame":{"x":1440,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}}},"animations":{"idle":{"frames":["idle_00","idle_01","idle_02","idle_03","idle_04","idle_05"],"fps":6,"loop":true},"walk":{"frames":["walk_00","walk_01","walk_02","walk_03","walk_04","walk_05","walk_06","walk_07"],"fps":12,"loop":true},"attack":{"frames":["attack_00","attack_01","attack_02","attack_03","attack_04","attack_05"],"fps":12,"loop":false},"hit":{"frames":["hit_00","hit_01","hit_02"],"fps":12,"loop":false},"death":{"frames":["death_00","death_01","death_02","death_03","death_04","death_05"],"fps":10,"loop":false}},"meta":{"app":"silkfront-artgen","image":"human_knight_sheet.png","size":{"w":2304,"h":1440},"scale":"1","facing":"+x (right)","pivotPx":[144,228]}}},{"id":"spider_weaver","ru":"Ткач","role":"Рабочий: строит и собирает","fac":"SPIDERS","dir":"../SPIDERS/UNITS/spider_weaver","svgDir":"../../ART_SRC/SPIDERS/UNITS/spider_weaver","preview":"../SPIDERS/UNITS/spider_weaver.png","clipped":0,"height":34,"atlas":{"frames":{"idle_00":{"frame":{"x":0,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_01":{"frame":{"x":288,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_02":{"frame":{"x":576,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_03":{"frame":{"x":864,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_04":{"frame":{"x":1152,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_05":{"frame":{"x":1440,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_00":{"frame":{"x":0,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_01":{"frame":{"x":288,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_02":{"frame":{"x":576,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_03":{"frame":{"x":864,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_04":{"frame":{"x":1152,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_05":{"frame":{"x":1440,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_06":{"frame":{"x":1728,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_07":{"frame":{"x":2016,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_00":{"frame":{"x":0,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_01":{"frame":{"x":288,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_02":{"frame":{"x":576,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_03":{"frame":{"x":864,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_04":{"frame":{"x":1152,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_05":{"frame":{"x":1440,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_00":{"frame":{"x":0,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_01":{"frame":{"x":288,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_02":{"frame":{"x":576,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_00":{"frame":{"x":0,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_01":{"frame":{"x":288,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_02":{"frame":{"x":576,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_03":{"frame":{"x":864,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_04":{"frame":{"x":1152,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_05":{"frame":{"x":1440,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}}},"animations":{"idle":{"frames":["idle_00","idle_01","idle_02","idle_03","idle_04","idle_05"],"fps":6,"loop":true},"walk":{"frames":["walk_00","walk_01","walk_02","walk_03","walk_04","walk_05","walk_06","walk_07"],"fps":12,"loop":true},"attack":{"frames":["attack_00","attack_01","attack_02","attack_03","attack_04","attack_05"],"fps":12,"loop":false},"hit":{"frames":["hit_00","hit_01","hit_02"],"fps":12,"loop":false},"death":{"frames":["death_00","death_01","death_02","death_03","death_04","death_05"],"fps":10,"loop":false}},"meta":{"app":"silkfront-artgen","image":"spider_weaver_sheet.png","size":{"w":2304,"h":1440},"scale":"1","facing":"+x (right)","pivotPx":[144,228]}}},{"id":"spider_scout","ru":"Разведчик","role":"Разведка и мобильность","fac":"SPIDERS","dir":"../SPIDERS/UNITS/spider_scout","svgDir":"../../ART_SRC/SPIDERS/UNITS/spider_scout","preview":"../SPIDERS/UNITS/spider_scout.png","clipped":0,"height":57,"atlas":{"frames":{"idle_00":{"frame":{"x":0,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_01":{"frame":{"x":288,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_02":{"frame":{"x":576,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_03":{"frame":{"x":864,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_04":{"frame":{"x":1152,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_05":{"frame":{"x":1440,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_00":{"frame":{"x":0,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_01":{"frame":{"x":288,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_02":{"frame":{"x":576,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_03":{"frame":{"x":864,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_04":{"frame":{"x":1152,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_05":{"frame":{"x":1440,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_06":{"frame":{"x":1728,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_07":{"frame":{"x":2016,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_00":{"frame":{"x":0,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_01":{"frame":{"x":288,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_02":{"frame":{"x":576,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_03":{"frame":{"x":864,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_04":{"frame":{"x":1152,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_05":{"frame":{"x":1440,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_00":{"frame":{"x":0,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_01":{"frame":{"x":288,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_02":{"frame":{"x":576,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_00":{"frame":{"x":0,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_01":{"frame":{"x":288,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_02":{"frame":{"x":576,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_03":{"frame":{"x":864,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_04":{"frame":{"x":1152,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_05":{"frame":{"x":1440,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}}},"animations":{"idle":{"frames":["idle_00","idle_01","idle_02","idle_03","idle_04","idle_05"],"fps":6,"loop":true},"walk":{"frames":["walk_00","walk_01","walk_02","walk_03","walk_04","walk_05","walk_06","walk_07"],"fps":12,"loop":true},"attack":{"frames":["attack_00","attack_01","attack_02","attack_03","attack_04","attack_05"],"fps":12,"loop":false},"hit":{"frames":["hit_00","hit_01","hit_02"],"fps":12,"loop":false},"death":{"frames":["death_00","death_01","death_02","death_03","death_04","death_05"],"fps":10,"loop":false}},"meta":{"app":"silkfront-artgen","image":"spider_scout_sheet.png","size":{"w":2304,"h":1440},"scale":"1","facing":"+x (right)","pivotPx":[144,228]}}},{"id":"spider_fang","ru":"Клык","role":"Основной ближний боец","fac":"SPIDERS","dir":"../SPIDERS/UNITS/spider_fang","svgDir":"../../ART_SRC/SPIDERS/UNITS/spider_fang","preview":"../SPIDERS/UNITS/spider_fang.png","clipped":0,"height":49,"atlas":{"frames":{"idle_00":{"frame":{"x":0,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_01":{"frame":{"x":288,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_02":{"frame":{"x":576,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_03":{"frame":{"x":864,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_04":{"frame":{"x":1152,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_05":{"frame":{"x":1440,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_00":{"frame":{"x":0,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_01":{"frame":{"x":288,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_02":{"frame":{"x":576,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_03":{"frame":{"x":864,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_04":{"frame":{"x":1152,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_05":{"frame":{"x":1440,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_06":{"frame":{"x":1728,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_07":{"frame":{"x":2016,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_00":{"frame":{"x":0,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_01":{"frame":{"x":288,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_02":{"frame":{"x":576,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_03":{"frame":{"x":864,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_04":{"frame":{"x":1152,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_05":{"frame":{"x":1440,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_00":{"frame":{"x":0,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_01":{"frame":{"x":288,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_02":{"frame":{"x":576,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_00":{"frame":{"x":0,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_01":{"frame":{"x":288,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_02":{"frame":{"x":576,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_03":{"frame":{"x":864,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_04":{"frame":{"x":1152,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_05":{"frame":{"x":1440,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}}},"animations":{"idle":{"frames":["idle_00","idle_01","idle_02","idle_03","idle_04","idle_05"],"fps":6,"loop":true},"walk":{"frames":["walk_00","walk_01","walk_02","walk_03","walk_04","walk_05","walk_06","walk_07"],"fps":12,"loop":true},"attack":{"frames":["attack_00","attack_01","attack_02","attack_03","attack_04","attack_05"],"fps":12,"loop":false},"hit":{"frames":["hit_00","hit_01","hit_02"],"fps":12,"loop":false},"death":{"frames":["death_00","death_01","death_02","death_03","death_04","death_05"],"fps":10,"loop":false}},"meta":{"app":"silkfront-artgen","image":"spider_fang_sheet.png","size":{"w":2304,"h":1440},"scale":"1","facing":"+x (right)","pivotPx":[144,228]}}},{"id":"spider_spitter","ru":"Плеватель","role":"Дальний бой","fac":"SPIDERS","dir":"../SPIDERS/UNITS/spider_spitter","svgDir":"../../ART_SRC/SPIDERS/UNITS/spider_spitter","preview":"../SPIDERS/UNITS/spider_spitter.png","clipped":0,"height":58,"atlas":{"frames":{"idle_00":{"frame":{"x":0,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_01":{"frame":{"x":288,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_02":{"frame":{"x":576,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_03":{"frame":{"x":864,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_04":{"frame":{"x":1152,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_05":{"frame":{"x":1440,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_00":{"frame":{"x":0,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_01":{"frame":{"x":288,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_02":{"frame":{"x":576,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_03":{"frame":{"x":864,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_04":{"frame":{"x":1152,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_05":{"frame":{"x":1440,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_06":{"frame":{"x":1728,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_07":{"frame":{"x":2016,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_00":{"frame":{"x":0,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_01":{"frame":{"x":288,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_02":{"frame":{"x":576,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_03":{"frame":{"x":864,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_04":{"frame":{"x":1152,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_05":{"frame":{"x":1440,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_00":{"frame":{"x":0,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_01":{"frame":{"x":288,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_02":{"frame":{"x":576,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_00":{"frame":{"x":0,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_01":{"frame":{"x":288,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_02":{"frame":{"x":576,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_03":{"frame":{"x":864,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_04":{"frame":{"x":1152,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_05":{"frame":{"x":1440,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}}},"animations":{"idle":{"frames":["idle_00","idle_01","idle_02","idle_03","idle_04","idle_05"],"fps":6,"loop":true},"walk":{"frames":["walk_00","walk_01","walk_02","walk_03","walk_04","walk_05","walk_06","walk_07"],"fps":12,"loop":true},"attack":{"frames":["attack_00","attack_01","attack_02","attack_03","attack_04","attack_05"],"fps":12,"loop":false},"hit":{"frames":["hit_00","hit_01","hit_02"],"fps":12,"loop":false},"death":{"frames":["death_00","death_01","death_02","death_03","death_04","death_05"],"fps":10,"loop":false}},"meta":{"app":"silkfront-artgen","image":"spider_spitter_sheet.png","size":{"w":2304,"h":1440},"scale":"1","facing":"+x (right)","pivotPx":[144,228]}}},{"id":"spider_armored","ru":"Панцирник","role":"Тяжёлый бронированный боец","fac":"SPIDERS","dir":"../SPIDERS/UNITS/spider_armored","svgDir":"../../ART_SRC/SPIDERS/UNITS/spider_armored","preview":"../SPIDERS/UNITS/spider_armored.png","clipped":0,"height":74,"atlas":{"frames":{"idle_00":{"frame":{"x":0,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_01":{"frame":{"x":288,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_02":{"frame":{"x":576,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_03":{"frame":{"x":864,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_04":{"frame":{"x":1152,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"idle_05":{"frame":{"x":1440,"y":0,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_00":{"frame":{"x":0,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_01":{"frame":{"x":288,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_02":{"frame":{"x":576,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_03":{"frame":{"x":864,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_04":{"frame":{"x":1152,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_05":{"frame":{"x":1440,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_06":{"frame":{"x":1728,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"walk_07":{"frame":{"x":2016,"y":288,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_00":{"frame":{"x":0,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_01":{"frame":{"x":288,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_02":{"frame":{"x":576,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_03":{"frame":{"x":864,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_04":{"frame":{"x":1152,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"attack_05":{"frame":{"x":1440,"y":576,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_00":{"frame":{"x":0,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_01":{"frame":{"x":288,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"hit_02":{"frame":{"x":576,"y":864,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_00":{"frame":{"x":0,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_01":{"frame":{"x":288,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_02":{"frame":{"x":576,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_03":{"frame":{"x":864,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_04":{"frame":{"x":1152,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}},"death_05":{"frame":{"x":1440,"y":1152,"w":288,"h":288},"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":288,"h":288},"sourceSize":{"w":288,"h":288},"pivot":{"x":0.5,"y":0.7916666666666666}}},"animations":{"idle":{"frames":["idle_00","idle_01","idle_02","idle_03","idle_04","idle_05"],"fps":6,"loop":true},"walk":{"frames":["walk_00","walk_01","walk_02","walk_03","walk_04","walk_05","walk_06","walk_07"],"fps":12,"loop":true},"attack":{"frames":["attack_00","attack_01","attack_02","attack_03","attack_04","attack_05"],"fps":12,"loop":false},"hit":{"frames":["hit_00","hit_01","hit_02"],"fps":12,"loop":false},"death":{"frames":["death_00","death_01","death_02","death_03","death_04","death_05"],"fps":10,"loop":false}},"meta":{"app":"silkfront-artgen","image":"spider_armored_sheet.png","size":{"w":2304,"h":1440},"scale":"1","facing":"+x (right)","pivotPx":[144,228]}}}]};
-</script>
-<script>
-// Browser side of the unit gallery. Plays the real Phaser atlases (sheet PNG + JSON
-// frames) on canvases, so what you see is exactly what the game will load.
-const $ = (t, a = {}, ...k) => { const e = document.createElement(t); Object.assign(e, a); e.append(...k); return e; };
-const imgs = {};
-const sheetImg = (u) => imgs[u.id] || (imgs[u.id] = Object.assign(new Image(), { src: `${u.dir}/${u.id}_sheet.png` }));
-const opts = { bg: 'ground', pivot: false, zoom: 1, speed: 1 };
-const players = [];
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SILKFRONT — Спецификация Кодекса мира Aethyr</title>
+  <style>
+    /* ==========================================================================
+       ЭТАП 1: ПЕРЕМЕННЫЕ НАСТРОЙКИ ВНЕШНЕГО ВИДА (CSS Variables)
+       Здесь можно легко поменять цвета всего документа в одном месте
+       ========================================================================== */
+    :root {
+      --bg-main: #0f1117;         /* Основной тёмный фон страницы */
+      --bg-paper: #181b24;        /* Фон листа спецификации и карточек */
+      --bg-sidebar: #13161f;      /* Фон бокового меню */
+      --bg-code: #0a0c10;         /* Фон для блоков с кодом JSON/JS */
+      --text-main: #e2e4ed;       /* Основной цвет текста (светлый, легко читаемый) */
+      --text-muted: #9ba1b3;      /* Приглушённый цвет для подписей */
+      --accent-gold: #c9a66b;     /* Золотой акцент (в стиле архивной книги) */
+      --accent-gold-dim: #7a633e; /* Приглушённое золото для рамок */
+      --border-color: #282d3d;    /* Цвет разделительных линий */
+      --badge-bg: #232838;        /* Фон для мелких технических меток */
+    }
 
-// One looping/one-shot animation player bound to a canvas.
-function player(u, state, size, zoom) {
-  const c = $('canvas', { width: size, height: size });
-  const st = DATA.states[state], names = u.atlas.animations[state].frames;
-  const pl = { c, u, state, names, st, t: 0, zoom };
-  players.push(pl);
-  return pl;
-}
-function drawFrame(ctx, u, name, x, y, z) {
-  const fr = u.atlas.frames[name].frame, im = sheetImg(u);
-  if (!im.complete) return;
-  ctx.drawImage(im, fr.x, fr.y, fr.w, fr.h, x - DATA.pivot[0] * z, y - DATA.pivot[1] * z, fr.w * z, fr.h * z);
-}
-function tickPlayer(pl, dt) {
-  const ctx = pl.c.getContext('2d'), z = pl.zoom ?? opts.zoom;
-  pl.t += dt * opts.speed;
-  const n = pl.names.length, len = n / pl.st.fps, hold = pl.st.loop ? 0 : 0.8; // one-shots hold last frame
-  const tt = pl.st.loop ? pl.t % len : pl.t % (len + hold);
-  const i = Math.max(0, Math.min(n - 1, Math.floor(tt * pl.st.fps)));
-  ctx.clearRect(0, 0, pl.c.width, pl.c.height);
-  const px = pl.c.width / 2, py = pl.c.height * 0.79;
-  drawFrame(ctx, pl.u, pl.names[i], px, py, z);
-  if (opts.pivot) { ctx.strokeStyle = '#e04'; ctx.beginPath(); ctx.moveTo(px - 8, py); ctx.lineTo(px + 8, py); ctx.moveTo(px, py - 8); ctx.lineTo(px, py + 8); ctx.stroke(); }
-  pl.c.title = `${pl.names[i]} · ${i + 1}/${n} · ${pl.st.fps} fps${pl.st.loop ? ' · loop' : ''}`;
-}
-let last = performance.now();
-function loop(now) { const dt = Math.max(0, Math.min(0.1, (now - last) / 1000)); /* rAF time can precede last */ last = now; players.forEach((p) => p.c.isConnected && tickPlayer(p, dt)); field.tick && field.tick(dt); requestAnimationFrame(loop); }
+    /* Базовый сброс отступов и настройка плавной прокрутки при клике по меню */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-function toolsBar(onChange) {
-  const sel = $('select', { onchange: (e) => { opts.bg = e.target.value; onChange(); } },
-    ...[['ground', 'Земля (ночь)'], ['light', 'Трава (светлая)'], ['chk', 'Прозрачность']].map(([v, t]) => $('option', { value: v, textContent: t, selected: opts.bg === v })));
-  const z = $('select', { onchange: (e) => { opts.zoom = +e.target.value; onChange(); } },
-    ...[[1, '100% (PNG)'], [0.5, '50% (игровой зум)'], [0.33, '33% (дальний зум)']].map(([v, t]) => $('option', { value: v, textContent: t, selected: opts.zoom === v })));
-  const sp = $('input', { type: 'range', min: 0.1, max: 2, step: 0.1, value: opts.speed, oninput: (e) => (opts.speed = +e.target.value) });
-  const pv = $('input', { type: 'checkbox', checked: opts.pivot, onchange: (e) => (opts.pivot = e.target.checked) });
-  return $('div', { className: 'tools' }, 'Фон ', sel, ' Масштаб ', z, ' Скорость ', sp, $('label', {}, pv, ' точка опоры'));
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-const LABEL = { idle: 'Ожидание', walk: 'Движение', attack: 'Атака', hit: 'Урон', death: 'Смерть' };
-const FAC = { HUMANS: 'Орден Последнего Света', SPIDERS: 'Древняя Колония' };
-const main = document.getElementById('main'), nav = document.getElementById('nav');
-let current = 'overview';
+    body {
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.65;
+      display: flex;
+      min-height: 100vh;
+    }
 
-// Battlefield preview: every unit at in-game zoom on one ground plane, walking in place.
-const field = {};
-function fieldCard() {
-  const W = 1200, H = 300, c = $('canvas', { width: W, height: H }), z = 0.5;
-  const list = DATA.units, t0 = { v: 0 };
-  field.tick = (dt) => {
-    if (!c.isConnected) return;
-    t0.v += dt * opts.speed;
-    const ctx = c.getContext('2d');
-    const gr = ctx.createLinearGradient(0, 0, 0, H); gr.addColorStop(0, '#1b1e28'); gr.addColorStop(1, '#3a4150');
-    ctx.fillStyle = gr; ctx.fillRect(0, 0, W, H);
-    list.forEach((u, i) => {
-      const st = i % 2 ? 'walk' : 'idle', names = u.atlas.animations[st].frames, fps = DATA.states[st].fps;
-      const x = 70 + i * ((W - 140) / (list.length - 1)), y = 170 + (i % 2) * 70;
-      drawFrame(ctx, u, names[Math.max(0, Math.floor(t0.v * fps)) % names.length], x, y, z);
-      ctx.fillStyle = u.fac === 'HUMANS' ? '#c9a45a' : '#47c3b4'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
-      ctx.fillText(u.ru, x, y + 22);
-    });
-  };
-  return $('div', { className: 'card', id: 'field' }, $('h2', { textContent: 'Поле боя · игровой масштаб 50%' }),
-    $('h3', { textContent: 'Все 10 юнитов на одной земле, одна камера, одинаковая опора. Нечётные — в ходьбе.' }), c);
-}
+    /* ==========================================================================
+       БОКОВАЯ ПАНЕЛЬ НАВИГАЦИИ (Оглавление)
+       ========================================================================== */
+    .sidebar {
+      width: 300px;
+      background-color: var(--bg-sidebar);
+      border-right: 1px solid var(--border-color);
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      overflow-y: auto;
+      padding: 24px 20px;
+      z-index: 100;
+    }
 
-function stateRow(u, size) {
-  return $('div', { className: 'row' }, ...Object.keys(DATA.states).map((s) => {
-    const pl = player(u, s, size, null);
-    pl.c.className = 'ground ' + opts.bg;
-    const n = pl.names.length, st = DATA.states[s];
-    return $('div', { className: 'st' }, pl.c, $('span', { textContent: `${LABEL[s] || s} · ${n} кадр. · ${st.fps} fps${st.loop ? ' · цикл' : ''}` }));
-  }));
-}
+    .sidebar-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--accent-gold-dim);
+    }
 
-function overview() {
-  const cards = ['HUMANS', 'SPIDERS'].map((fac) => $('div', { className: 'card' },
-    $('h2', { textContent: FAC[fac] }), $('h3', { textContent: 'Атака каждого юнита (наведите на кадр — номер кадра)' }),
-    $('div', { className: 'row' }, ...DATA.units.filter((u) => u.fac === fac).map((u) => {
-      const pl = player(u, 'attack', 200, 0.66); pl.c.className = 'ground ' + opts.bg;
-      return $('div', { className: 'st' }, pl.c, $('span', { textContent: `${u.ru} — ${u.role}` }));
-    }))));
-  const lineup = $('div', { className: 'card' }, $('h2', { textContent: 'Линейка масштаба (STYLE GUIDE)' }),
-    $('h3', { textContent: 'Верх — цвет, низ — силуэты 50%. Один риг-масштаб, одна линия земли.' }),
-    $('div', { className: 'sheet' }, $('img', { src: '../STYLE_GUIDE/scale_lineup.png', style: 'width:100%' })));
-  return [fieldCard(), ...cards, lineup];
-}
+    .nav-list {
+      list-style: none;
+    }
 
-function unitPage(u) {
-  const files = $('table', {}, $('tr', {}, $('th', { textContent: 'Состояние' }), $('th', { textContent: 'PNG' }), $('th', { textContent: 'SVG' })),
-    ...['sheet', ...Object.keys(DATA.states)].map((s) => $('tr', {}, $('td', { textContent: LABEL[s] || 'Spritesheet' }),
-      $('td', {}, $('a', { href: `${u.dir}/${u.id}_${s}.png`, textContent: `${u.id}_${s}.png` })),
-      $('td', {}, $('a', { href: `${u.svgDir}/${u.id}_${s}.svg`, textContent: `${u.id}_${s}.svg` })))));
-  return [
-    $('div', { className: 'card' }, $('h2', { textContent: `${u.ru} · ${u.id}` }),
-      $('h3', { textContent: `${FAC[u.fac]} · ${u.role} · высота над опорой ${u.height}px · обрезанных кадров: ${u.clipped}` }),
-      stateRow(u, 288)),
-    $('div', { className: 'card' }, $('h2', { textContent: 'Spritesheet (Phaser atlas)' }),
-      $('h3', { textContent: `Строки: ${Object.keys(DATA.states).join(' / ')} · ячейка ${DATA.cell}px · опора ${DATA.pivot.join(',')}` }),
-      $('div', { className: 'sheet ground chk' }, $('img', { src: `${u.dir}/${u.id}_sheet.png` }))),
-    $('div', { className: 'card' }, $('h2', { textContent: 'Файлы' }), files, $('p', {},
-      $('a', { href: `${u.dir}/${u.id}_sheet.json`, textContent: `${u.id}_sheet.json` }), ' — атлас с кадрами и анимациями')),
-  ];
-}
+    .nav-list li {
+      margin-bottom: 6px;
+    }
 
-function render() {
-  players.length = 0;
-  nav.replaceChildren($('button', { textContent: 'Обзор', className: current === 'overview' ? 'on' : '', onclick: () => { current = 'overview'; render(); } }),
-    ...DATA.units.map((u) => $('button', { textContent: u.ru, className: (u.fac === 'HUMANS' ? 'h' : 's') + (current === u.id ? ' on' : ''),
-      onclick: () => { current = u.id; render(); } })));
-  const u = DATA.units.find((x) => x.id === current);
-  main.replaceChildren(toolsBar(render), ...(u ? unitPage(u) : overview()));
-}
-render();
-requestAnimationFrame(loop);
+    .nav-list a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      display: block;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
 
-</script>
-</body></html>
+    .nav-list a:hover {
+      color: var(--text-main);
+      background-color: rgba(201, 166, 107, 0.12);
+      padding-left: 14px;
+    }
+
+    /* ==========================================================================
+       ОСНОВНАЯ ОБЛАСТЬ ДОКУМЕНТА
+       ========================================================================== */
+    .main-content {
+      margin-left: 300px;
+      flex: 1;
+      padding: 40px 60px;
+      max-width: 1100px;
+    }
+
+    /* Шапка документа */
+    .doc-header {
+      background-color: var(--bg-paper);
+      border: 1px solid var(--accent-gold-dim);
+      border-radius: 10px;
+      padding: 32px;
+      margin-bottom: 36px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .doc-header h1 {
+      font-size: 2rem;
+      color: var(--accent-gold);
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Сетка метаданных в шапке */
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .meta-item {
+      background-color: var(--bg-main);
+      padding: 10px 14px;
+      border-radius: 6px;
+      border-left: 3px solid var(--accent-gold);
+      font-size: 0.92rem;
+    }
+
+    .meta-item strong {
+      color: var(--accent-gold);
+      display: block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .doc-intro {
+      color: var(--text-main);
+      font-size: 1rem;
+      background: rgba(201, 166, 107, 0.08);
+      padding: 14px 18px;
+      border-radius: 6px;
+      border: 1px dashed var(--accent-gold-dim);
+    }
+
+    /* ==========================================================================
+       СТИЛИ РАЗДЕЛОВ, ЗАГОЛОВКОВ И СПИСКОВ
+       ========================================================================== */
+    .section-card {
+      background-color: var(--bg-paper);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 30px 34px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      color: var(--accent-gold);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    h3 {
+      font-size: 1.18rem;
+      color: #ffffff;
+      margin-top: 24px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h3::before {
+      content: "◆";
+      color: var(--accent-gold);
+      font-size: 0.85rem;
+    }
+
+    p {
+      margin-bottom: 12px;
+    }
+
+    ul, ol {
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    li::marker {
+      color: var(--accent-gold);
+    }
+
+    /* Выделение технических терминов внутри текста */
+    code.inline-code {
+      font-family: 'Consolas', 'Courier New', monospace;
+      background-color: var(--badge-bg);
+      color: #f0c674;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+      border: 1px solid #32394f;
+    }
+
+    /* ==========================================================================
+       ТАБЛИЦЫ (Разделы 4.1 и 6.4)
+       ========================================================================== */
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 18px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: var(--bg-main);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    th {
+      background-color: rgba(201, 166, 107, 0.15);
+      color: var(--accent-gold);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+
+    /* ==========================================================================
+       БЛОКИ ПРОГРАММНОГО КОДА И JSON-ШАБЛОНОВ
+       ========================================================================== */
+    .code-container {
+      position: relative;
+      margin: 16px 0;
+    }
+
+    pre {
+      background-color: var(--bg-code);
+      border: 1px solid var(--border-color);
+      border-left: 3px solid var(--accent-gold);
+      border-radius: 6px;
+      padding: 18px;
+      overflow-x: auto;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 0.9rem;
+      color: #d7dae0;
+      line-height: 1.5;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: var(--badge-bg);
+      color: var(--accent-gold);
+      border: 1px solid var(--accent-gold-dim);
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background-color: var(--accent-gold);
+      color: var(--bg-main);
+    }
+
+    /* Специальный блок для финального резюме */
+    .summary-footer {
+      background: linear-gradient(135deg, rgba(201, 166, 107, 0.14), rgba(24, 27, 36, 0.9));
+      border: 1px solid var(--accent-gold);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-top: 24px;
+      font-weight: 500;
+    }
+
+    /* ==========================================================================
+       АДАПТИВНОСТЬ ДЛЯ УЗКИХ ЭКРАНОВ И МОБИЛЬНЫХ УСТРОЙСТВ
+       ========================================================================== */
+    @media (max-width: 900px) {
+      body {
+        flex-direction: column;
+      }
+      .sidebar {
+        position: relative;
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .main-content {
+        margin-left: 0;
+        padding: 24px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       ЭТАП 2: БОКОВОЕ ОГЛАВЛЕНИЕ ДЛЯ БЫСТРОЙ НАВИГАЦИИ
+       ======================================================================== -->
+  <aside class="sidebar">
+    <div class="sidebar-title">Оглавление Кодекса</div>
+    <ul class="nav-list">
+      <li><a href="#sec-1">1. Цели и границы</a></li>
+      <li><a href="#sec-2">2. Пользовательская модель</a></li>
+      <li><a href="#sec-3">3. Восемь разделов Кодекса</a></li>
+      <li><a href="#sec-4">4. Статусы и открытие</a></li>
+      <li><a href="#sec-5">5. Универсальный шаблон</a></li>
+      <li><a href="#sec-6">6. Схема данных и связи</a></li>
+      <li><a href="#sec-7">7. Тех. требования Canvas 2D</a></li>
+      <li><a href="#sec-8">8. Контентный процесс</a></li>
+      <li><a href="#sec-9">9. Демонстрационный контент</a></li>
+      <li><a href="#sec-10">10. Что реализовать сейчас</a></li>
+      <li><a href="#sec-11">11. Данные от Antigravity</a></li>
+      <li><a href="#sec-12">12. Графика от Claude</a></li>
+      <li><a href="#sec-13">13. Задачи разработчиков</a></li>
+      <li><a href="#sec-14">14. Критерии приёмки</a></li>
+    </ul>
+  </aside>
+
+  <!-- ========================================================================
+       ОСНОВНОЙ КОНТЕНТ СПЕЦИФИКАЦИИ
+       ======================================================================== -->
+  <main class="main-content">
+
+    <!-- ШАПКА ДОКУМЕНТА -->
+    <header class="doc-header">
+      <h1>SILKFRONT — спецификация Кодекса мира Aethyr</h1>
+      <div class="meta-grid">
+        <div class="meta-item">
+          <strong>Версия</strong>
+          1.0, проектная спецификация
+        </div>
+        <div class="meta-item">
+          <strong>Статус</strong>
+          готово к передаче разработчику; тексты и изображения не являются заменой утверждённого канона
+        </div>
+        <div class="meta-item">
+          <strong>Платформа</strong>
+          существующая веб-архитектура SILKFRONT, Canvas 2D
+        </div>
+        <div class="meta-item">
+          <strong>Область</strong>
+          внутриигровой исторический архив / Codex
+        </div>
+        <div class="meta-item">
+          <strong>Владелец лора</strong>
+          Antigravity
+        </div>
+        <div class="meta-item">
+          <strong>Техническая реализация</strong>
+          Sharrowkin совместно с Antigravity по утверждённым данным
+        </div>
+      </div>
+      <div class="doc-intro">
+        Этот документ описывает контейнер, интерфейс, состояния открытия, связи и технический контракт Кодекса. Он не переписывает сюжет, биографии или сценарии миссий. Любой текст, которого нет в утверждённых материалах, должен оставаться незаполненным до передачи данных Antigravity.
+      </div>
+    </header>
+
+    <!-- РАЗДЕЛ 1 -->
+    <section id="sec-1" class="section-card">
+      <h2>1. Цели и границы</h2>
+      
+      <h3>1.1. Назначение</h3>
+      <p>Кодекс — это внутриигровая историческая книга и архив, в котором игрок:</p>
+      <ul>
+        <li>читает уже открытые сведения о мире Aethyr;</li>
+        <li>видит, как сведения связаны между собой;</li>
+        <li>возвращается к материалам после миссии или события;</li>
+        <li>постепенно собирает картину мира без преждевременных сюжетных раскрытий;</li>
+        <li>различает знания игрока, фракционную трактовку и подтверждённый факт.</li>
+      </ul>
+      <p>Кодекс не является:</p>
+      <ul>
+        <li>энциклопедией, доступной целиком с первого запуска;</li>
+        <li>вторым журналом задач миссии;</li>
+        <li>справочником баланса, заменяющим HUD;</li>
+        <li>генератором лора;</li>
+        <li>местом для непроверенных догадок сценариста или разработчика.</li>
+      </ul>
+
+      <h3>1.2. Канонические ограничения</h3>
+      <p>В текущем проекте подтверждены и могут использоваться в демонстрационных записях:</p>
+      <ul>
+        <li>мир Aethyr / Аэтир;</li>
+        <li>Орден Последнего Света — человеческая игровая фракция;</li>
+        <li>Нерубы — игровая фракция арахнидов;</li>
+        <li>Древняя Колония — историческое и государственное наименование цивилизации Нерубов;</li>
+        <li>Эдрик — инквизитор Ордена;</li>
+        <li>Арахна — Матриарх Нерубов;</li>
+        <li>первая игровая сюжетная миссия «Пепельная окраина»;</li>
+        <li>подтверждённые цели этой миссии: разведать Пепельный брод, восстановить снабжение, укрепить восточный выход, обучить подкрепление и уничтожить передовой Инкубатор при сохранённой Цитадели.</li>
+      </ul>
+      <p>Названия, даты, факты, отношения и финальные формулировки из расширенной сюжетной главы считаются входными данными Antigravity только после редакторского подтверждения конкретной версии. Кодекс должен уметь принять их, но не обязан показывать их заранее.</p>
+    </section>
+
+    <!-- РАЗДЕЛ 2 -->
+    <section id="sec-2" class="section-card">
+      <h2>2. Пользовательская модель Кодекса</h2>
+
+      <h3>2.1. Главное окно</h3>
+      <p>Кодекс открывается из меню кампании и из игрового меню паузы. Во время активной миссии открытие Кодекса приостанавливает игровой такт тем же безопасным способом, что и существующие диалоги. Закрытие возвращает игрока в прежнее состояние паузы.</p>
+      <p>Композиция экрана:</p>
+      <ol>
+        <li>Шапка книги — название «Кодекс Aethyr», текущая кампания/перспектива, счётчик открытых записей.</li>
+        <li>Левая полоса разделов — восемь разделов и индикаторы новых записей.</li>
+        <li>Центральная область — список записей выбранного раздела, сортировка и фильтры.</li>
+        <li>Правая страница — выбранная запись: заголовок, статус, иллюстрация, текст, источники, связи.</li>
+        <li>Нижняя строка — подсказки управления, «назад», «закрыть», переключатель хронологии/графа.</li>
+      </ol>
+      <p>На узком экране области переходят в последовательность: разделы → список → страница записи. Состояние выбранного раздела и записи сохраняется при возврате.</p>
+
+      <h3>2.2. Визуальная метафора</h3>
+      <p>Интерфейс должен напоминать архивную книгу:</p>
+      <ul>
+        <li>тёмный фон, бумажная/пергаментная страница, тонкие металлические и золотые акценты;</li>
+        <li>разделы оформляются как вкладки, закладки или корешки, а не как плоская таблица;</li>
+        <li>неизвестные записи выглядят как пустая карточка с печатью и короткой подсказкой;</li>
+        <li>обнаруженные — как неполная полевая заметка с отметкой источника;</li>
+        <li>изученные — как полностью развернутая страница с иллюстрацией и перекрёстными ссылками;</li>
+        <li>цвета фракций используются как маркеры происхождения знания, не как сигнал «добро/зло»;</li>
+        <li>анимация ограничена перелистыванием, проявлением чернил и мягким свечением; она не должна мешать чтению или ухудшать производительность Canvas.</li>
+      </ul>
+
+      <h3>2.3. Навигация</h3>
+      <p>Обязательные действия:</p>
+      <ul>
+        <li>клик/ЛКМ по разделу — открыть раздел;</li>
+        <li>клик по записи — открыть страницу;</li>
+        <li>Esc — закрыть страницу, затем Кодекс;</li>
+        <li>колесо/перетаскивание — прокрутка страницы или списка;</li>
+        <li>клавиатура — Tab по интерактивным элементам, Enter открыть, стрелки в списке;</li>
+        <li>кнопка «Назад» сохраняет позицию списка;</li>
+        <li>кнопка «К последнему новому» ведёт к самой ранней непрочитанной записи;</li>
+        <li>отдельная кнопка «Хронология» открывает временную шкалу;</li>
+        <li>отдельная кнопка «Связи» открывает граф, но только по доступным узлам.</li>
+      </ul>
+
+      <h3>2.4. Поиск и фильтрация</h3>
+      <p>Поиск работает только по доступным данным. Неизвестные заголовки, скрытые псевдонимы и текст будущего уровня не индексируются.</p>
+      <p>Фильтры:</p>
+      <ul>
+        <li>раздел;</li>
+        <li>статус: обнаружено / изучено;</li>
+        <li>фракционная перспектива: общая / Орден / Нерубы;</li>
+        <li>тип записи: персонаж, место, событие, юнит, здание, артефакт, термин;</li>
+        <li>источник открытия: миссия, знакомство, посещение, обнаружение, сюжетное событие;</li>
+        <li>хронологический диапазон, если событие уже доступно.</li>
+      </ul>
+      <p>При пустом результате показывается архивная формулировка «В доступных листах совпадений нет», а не подсказка о скрытых записях.</p>
+
+      <h3>2.5. Изображения и просмотр</h3>
+      <p>Страница может содержать один основной визуальный материал и до трёх дополнительных:</p>
+      <ul>
+        <li>портрет персонажа;</li>
+        <li>силуэт/спрайт существа или юнита;</li>
+        <li>панораму локации;</li>
+        <li>схему, карту или хронологическую диаграмму;</li>
+        <li>здание, артефакт или символ;</li>
+        <li>фрагмент рукописи только после утверждения текста изображения.</li>
+      </ul>
+      <p>Клик по иллюстрации открывает просмотрщик с масштабированием, панорамированием, подписью и указанием статуса ассета. Изображение не должно раскрывать закрытую часть записи: для каждого media-объекта действует собственное условие открытия.</p>
+    </section>
+
+    <!-- РАЗДЕЛ 3 -->
+    <section id="sec-3" class="section-card">
+      <h2>3. Восемь разделов Кодекса</h2>
+      <p>Для каждого раздела ниже заданы назначение, категории, минимальная структура записи, связи и допустимые иллюстрации. Конкретные тексты заполняются из канона Antigravity.</p>
+
+      <h3>3.1. Мир Aethyr</h3>
+      <ul>
+        <li><strong>Назначение:</strong> дать безопасную базовую рамку мира без раскрытия поздних причин и тайн.</li>
+        <li><strong>Категории:</strong> общие сведения; поверхность и глубины; устройство мира; эпохи; природные явления; ресурсы и метафизика — только на раскрытом уровне.</li>
+        <li><strong>Структура записи:</strong> название; короткое определение; доступный слой описания; географический/временной охват; подтверждённые факты; неизвестные игроку аспекты не перечисляются; связанные эпохи, места, фракции и термины.</li>
+        <li><strong>Связи:</strong> Aethyr → эпохи; Aethyr → регионы; Эссенция → фракции, юниты, здания; устройство мира → события только после открытия соответствующего события.</li>
+        <li><strong>Иллюстрации:</strong> нейтральная схема мира; карта известных областей; абстрактная схема слоёв. Не показывать закрытые регионы как подписанные объекты.</li>
+      </ul>
+
+      <h3>3.2. История</h3>
+      <ul>
+        <li><strong>Назначение:</strong> читать события как хронику, а не как список миссий; отделять известную версию от полной истины.</li>
+        <li><strong>Категории:</strong> эпохи; отдельные события; миссионные вехи; последствия; параллельные записи двух фракций; документы/свидетельства.</li>
+        <li><strong>Структура записи:</strong> дата или «время неизвестно»; название события; краткая доступная запись; кто наблюдал; источник; статус достоверности; последствия, доступные на текущем уровне; связанные записи.</li>
+        <li><strong>Связи:</strong> событие ↔ миссия; событие ↔ персонаж; событие ↔ локация; событие ↔ предыдущее/следующее событие. Связь не открывает целевую запись автоматически.</li>
+        <li><strong>Иллюстрации:</strong> горизонтальная временная шкала; карта события; фрагмент документа; две колонки перспектив, если обе стороны уже открыли соответствующие материалы.</li>
+      </ul>
+
+      <h3>3.3. Фракции</h3>
+      <ul>
+        <li><strong>Назначение:</strong> объяснить устройство и визуально различить игровые стороны без морализаторской классификации.</li>
+        <li><strong>Категории:</strong> Орден Последнего Света; Нерубы; Древняя Колония как цивилизационный контекст; иерархия; ресурсы; военные роли; архитектурные принципы.</li>
+        <li><strong>Структура записи:</strong> название; уровень сущности (игровая фракция/государство/организация); доступное описание; символика; известная игроку структура; игровые связи; перспектива источника.</li>
+        <li><strong>Связи:</strong> фракция ↔ персонажи; фракция ↔ юниты; фракция ↔ здания; фракция ↔ места; фракция ↔ события. Связь «Нерубы» и «Древняя Колония» должна быть явно размечена, чтобы не смешивать два уровня термина.</li>
+        <li><strong>Иллюстрации:</strong> эмблема, нейтральная схема структуры, архитектурные детали, утверждённая линейка существующих юнитов. Без новых героев или зданий в арт-пакете без отдельного согласования.</li>
+      </ul>
+
+      <h3>3.4. Персонажи</h3>
+      <ul>
+        <li><strong>Назначение:</strong> хранить персонажей, командиров и важных личностей по мере личного знакомства игрока.</li>
+        <li><strong>Категории:</strong> герои; командиры; союзники; свидетели; важные личности; персонажи только из документов.</li>
+        <li><strong>Структура записи:</strong> имя и титул; роль; фракция; первое знакомство; краткий портрет, разрешённый текущим уровнем; действия, лично наблюдённые игроком; цитаты только из утверждённого сценария; арка/изменения только после нужного события.</li>
+        <li><strong>Связи:</strong> персонаж ↔ фракция; персонаж ↔ миссия; персонаж ↔ место; персонаж ↔ событие; персонаж ↔ персонаж. Скрытая связь не отображается как пустой слот.</li>
+        <li><strong>Иллюстрации:</strong> портрет, силуэт, предмет/символ, сцена знакомства. Биографический портрет с поздними деталями имеет отдельный <code class="inline-code">spoilerTier</code>.</li>
+      </ul>
+
+      <h3>3.5. Локации</h3>
+      <ul>
+        <li><strong>Назначение:</strong> превращать посещённые места в атлас мира и давать повторное чтение уже увиденного.</li>
+        <li><strong>Категории:</strong> регионы; поселения; крепости; переправы; шахты; святилища; подземные зоны; руины.</li>
+        <li><strong>Структура записи:</strong> название; тип; фракционный контроль, если известен; краткое описание; координаты/карта только если они являются допустимыми игровыми данными; посещение; наблюдения; связанные события и объекты.</li>
+        <li><strong>Связи:</strong> локация ↔ миссия; локация ↔ событие; локация ↔ персонаж; локация ↔ фракция; локация ↔ архитектура/артефакт.</li>
+        <li><strong>Иллюстрации:</strong> миникарта с уже открытым контуром; панорама; архитектурный фрагмент; схема маршрута. Не показывать непосещённые скрытые точки на общей карте.</li>
+      </ul>
+
+      <h3>3.6. Существа и юниты</h3>
+      <ul>
+        <li><strong>Назначение:</strong> объединить игровые единицы и сюжетные существа, не подменяя тактические характеристики справочником баланса.</li>
+        <li><strong>Категории:</strong> рабочие; боевые юниты; крупные существа; нейтральные/сюжетные существа; касты и морфы, если подтверждены.</li>
+        <li><strong>Структура записи:</strong> название; фракция; роль, уже видимая игроку; способ обнаружения; наблюдения; игровые сведения (только необходимые для понимания); статус ассета; связанные здания, фракция, миссии.</li>
+        <li><strong>Связи:</strong> юнит ↔ фракция; юнит ↔ здание производства; юнит ↔ локация обнаружения; юнит ↔ персонаж/событие.</li>
+        <li><strong>Иллюстрации:</strong> существующий утверждённый атлас или отдельный портрет; силуэт для обнаруженного, полный вид для изученного; подпись «временное окружение» не должна маскировать незавершённый ассет.</li>
+      </ul>
+
+      <h3>3.7. Архитектура и артефакты</h3>
+      <ul>
+        <li><strong>Назначение:</strong> хранить значимые здания, предметы, реликвии и символы как материальные носители истории.</li>
+        <li><strong>Категории:</strong> здания; фортификации; производственные сооружения; артефакты; ресурсы; символы; документы и носители памяти.</li>
+        <li><strong>Структура записи:</strong> название; класс объекта; владелец/происхождение, если известно; функция или наблюдаемое назначение; внешний вид; первое обнаружение; безопасный уровень описания; связанные записи.</li>
+        <li><strong>Связи:</strong> объект ↔ фракция; объект ↔ локация; объект ↔ персонаж; объект ↔ событие; объект ↔ юнит.</li>
+        <li><strong>Иллюстрации:</strong> изометрическая/фронтальная схема здания, предмет крупным планом, знак фракции, фрагмент карты. Процедурные здания текущего прототипа и будущие финальные изображения должны быть разделены в метаданных ассета.</li>
+      </ul>
+
+      <h3>3.8. Терминология</h3>
+      <ul>
+        <li><strong>Назначение:</strong> дать короткие определения без принудительного раскрытия связанного сюжета.</li>
+        <li><strong>Категории:</strong> имена собственные; фракционные названия; должности; ресурсы; географические названия; культурные понятия; игровые термины.</li>
+        <li><strong>Структура записи:</strong> термин; написание/транслитерация; краткое определение; допустимый контекст; синонимы и запрещённые смешения; источник первого появления; связанные записи.</li>
+        <li><strong>Связи:</strong> термин ↔ любая запись. Словарная ссылка открывает только доступный фрагмент целевой страницы.</li>
+        <li><strong>Иллюстрации:</strong> печать, символ, фрагмент рукописи или иконка. Иллюстрация не обязательна.</li>
+      </ul>
+    </section>
+
+    <!-- РАЗДЕЛ 4 -->
+    <section id="sec-4" class="section-card">
+      <h2>4. Статусы и постепенное открытие</h2>
+
+      <h3>4.1. Три пользовательских статуса</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Статус</th>
+              <th>Значение</th>
+              <th>Что показывает UI</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="inline-code">unknown</code> / неизвестно</td>
+              <td>Запись или её существование ещё не доступно игроку</td>
+              <td>Не показывать в списке; в хронологии не создавать пробел с названием</td>
+            </tr>
+            <tr>
+              <td><code class="inline-code">discovered</code> / обнаружено</td>
+              <td>Игрок увидел объект, услышал имя или получил минимальное свидетельство</td>
+              <td>Заголовок, тип, короткий факт, источник обнаружения; полная статья закрыта</td>
+            </tr>
+            <tr>
+              <td><code class="inline-code">studied</code> / изучено</td>
+              <td>Выполнено условие глубокого знакомства или сюжетного раскрытия</td>
+              <td>Полный разрешённый текст, доступные изображения, связи и хронологические детали</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p><code class="inline-code">discovered</code> не означает, что игрок знает причину, биографию или истинную сторону события. <code class="inline-code">studied</code> означает только достижение заданного уровня, а не обязательное раскрытие всего будущего лора.</p>
+
+      <h3>4.2. Типы условий открытия</h3>
+      <p>Условия имеют стабильные идентификаторы и проверяются событиями игры:</p>
+      <ul>
+        <li><code class="inline-code">mission.completed</code> — миссия завершена;</li>
+        <li><code class="inline-code">mission.objective_completed</code> — выполнена конкретная цель;</li>
+        <li><code class="inline-code">character.met</code> — персонаж лично представлен игроку;</li>
+        <li><code class="inline-code">location.visited</code> — боевой отряд/игрок достиг точки;</li>
+        <li><code class="inline-code">entity.observed</code> — существо, юнит или объект впервые увиден;</li>
+        <li><code class="inline-code">entity.destroyed</code> — объект уничтожен и это является допустимым источником знания;</li>
+        <li><code class="inline-code">story.event</code> — утверждённое сюжетное событие наступило;</li>
+        <li><code class="inline-code">document.found</code> — найден конкретный документ/свидетельство;</li>
+        <li><code class="inline-code">campaign.completed</code> — завершена кампания или её разрешённый сегмент;</li>
+        <li><code class="inline-code">codex.entry_read</code> — прочитана предыдущая запись, только для не сюжетных справочных расширений.</li>
+      </ul>
+      <p>Условие должно содержать <code class="inline-code">scope</code> кампании/перспективы, если событие не является общим. Факт открытия не должен зависеть от случайного порядка кадров или положения камеры.</p>
+
+      <h3>4.3. Правила защиты от спойлеров</h3>
+      <ol>
+        <li>Текст хранится слоями: <code class="inline-code">discovered</code>, <code class="inline-code">studied</code>, а при необходимости — последующими сюжетными уровнями, например <code class="inline-code">revealed_after_h2</code>.</li>
+        <li>Клиент получает или выбирает только слой, разрешённый состоянием кампании. Нельзя прятать спойлер только CSS-ом.</li>
+        <li>Поиск, связи, количество элементов графа и автодополнение не должны выдавать скрытые названия.</li>
+        <li>Если запись открыта в одной кампании, другая перспектива не становится автоматически доступной, если это не указано в контентном контракте.</li>
+        <li>Общие факты могут быть видимы обеим сторонам, но фракционная трактовка хранится отдельной версией текста.</li>
+        <li>Перезапуск миссии не откатывает уже подтверждённое открытие, если проект не выберет режим «новое прохождение». Рекомендуемый режим — сохранение прогресса Кодекса.</li>
+        <li>Финальное раскрытие, развилка или крупное событие не показываются как «скрытая запись ожидает открытия».</li>
+        <li>Технические ID и внутренние имена не попадают в пользовательские подсказки.</li>
+      </ol>
+
+      <h3>4.4. Уведомления</h3>
+      <p>После срабатывания условия Кодекс создаёт событие <code class="inline-code">codex.entry_unlocked</code>.</p>
+      <ul>
+        <li>новое обнаружение: маленькая отметка на разделе и запись «новое»;</li>
+        <li>новое изучение: золотая печать и запись в журнале;</li>
+        <li>несколько открытий за один момент: одна сводка с количеством, без перечисления скрытых заголовков;</li>
+        <li>при открытии Кодекса кнопка «Новые» ведёт к первой непрочитанной странице;</li>
+        <li>прочтение снимает визуальный бейдж, но не меняет статус открытия;</li>
+        <li>уведомление можно отключить в настройках, но нельзя удалить сам прогресс.</li>
+      </ul>
+    </section>
+
+    <!-- РАЗДЕЛ 5 -->
+    <section id="sec-5" class="section-card">
+      <h2>5. Универсальный шаблон записи</h2>
+      <p>Контентная запись должна быть независимой от конкретного UI. Рекомендуемый шаблон:</p>
+
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Скопировать</button>
+        <pre><code>{
+  "id": "character.edric",
+  "schemaVersion": 1,
+  "section": "characters",
+  "type": "character",
+  "canonicalName": "Эдрик",
+  "displayName": "Эдрик",
+  "subtitle": "Инквизитор Ордена",
+  "faction": "order_last_light",
+  "status": "unknown",
+  "perspectives": ["common", "humans"],
+  "reveal": {
+    "discovered": [{ "type": "character.met", "id": "edric", "scope": "humans" }],
+    "studied": [{ "type": "mission.completed", "id": "ash-outskirts", "scope": "humans" }]
+  },
+  "content": {
+    "unknown": null,
+    "discovered": {
+      "summary": "Краткое подтверждённое описание без биографии и поздних событий.",
+      "sourceLabel": "Первое знакомство"
+    },
+    "studied": {
+      "summary": "Полный текст, утверждённый владельцем лора.",
+      "body": [{ "kind": "paragraph", "text": "..." }],
+      "quotes": [],
+      "sourceLabel": "Миссия 01"
+    }
+  },
+  "media": [],
+  "links": [
+    { "to": "faction.order_last_light", "kind": "member", "minStatus": "discovered" }
+  ],
+  "timeline": [],
+  "tags": ["inquisitor"],
+  "canon": { "owner": "antigravity", "source": "pending", "review": "pending" }
+}</code></pre>
+      </div>
+
+      <p>Обязательные поля: <code class="inline-code">id</code>, <code class="inline-code">schemaVersion</code>, <code class="inline-code">section</code>, <code class="inline-code">type</code>, <code class="inline-code">canonicalName</code>, <code class="inline-code">reveal</code>, <code class="inline-code">content</code>, <code class="inline-code">canon</code>. UI не должен получать запись без владельца и источника канона. Для пустого контента используется <code class="inline-code">pending</code>, а не выдуманный текст.</p>
+
+      <h3>5.1. Поля контента</h3>
+      <p><code class="inline-code">body</code> поддерживает только безопасный набор блоков: <code class="inline-code">paragraph</code>, <code class="inline-code">heading</code>, <code class="inline-code">quote</code>, <code class="inline-code">list</code>, <code class="inline-code">fact</code>, <code class="inline-code">warning</code>, <code class="inline-code">source</code>, <code class="inline-code">imageCaption</code>. HTML из контентного файла не исполняется. Разметка и переносы выполняются рендерером.</p>
+      <p><code class="inline-code">canon.review</code> принимает <code class="inline-code">pending</code>, <code class="inline-code">approved</code>, <code class="inline-code">deprecated</code>. Запись со статусом <code class="inline-code">pending</code> может использоваться в тестовой сборке, но не должна появляться в релизном архиве.</p>
+
+      <h3>5.2. Идентификаторы</h3>
+      <p>Формат: <code class="inline-code">&lt;section&gt;.&lt;slug&gt;</code>, ASCII lower-case, слова через <code class="inline-code">_</code>.</p>
+      <p>Примеры:</p>
+      <ul>
+        <li><code class="inline-code">world.aethyr</code>;</li>
+        <li><code class="inline-code">history.era_first_weave</code>;</li>
+        <li><code class="inline-code">faction.order_last_light</code>;</li>
+        <li><code class="inline-code">faction.nerubians</code>;</li>
+        <li><code class="inline-code">faction.ancient_colony</code>;</li>
+        <li><code class="inline-code">character.edric</code>;</li>
+        <li><code class="inline-code">character.arachna</code>;</li>
+        <li><code class="inline-code">location.ash_outskirts</code>;</li>
+        <li><code class="inline-code">unit.human_swordsman</code>;</li>
+        <li><code class="inline-code">building.s_incubator</code>;</li>
+        <li><code class="inline-code">artifact.first_spindle</code>;</li>
+        <li><code class="inline-code">term.essence</code>;</li>
+        <li><code class="inline-code">mission.ash_outskirts</code>;</li>
+        <li><code class="inline-code">event.ash_outskirts.completed</code>.</li>
+      </ul>
+      <p>Русский текст является <code class="inline-code">displayName</code>; ID не меняется из-за перевода, переименования или редакторской правки.</p>
+
+      <h3>5.3. Формат условия</h3>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Скопировать</button>
+        <pre><code>{
+  "type": "mission.objective_completed",
+  "id": "ash-outskirts.scout",
+  "scope": "humans",
+  "grant": "discovered",
+  "spoilerTier": 0,
+  "once": true
+}</code></pre>
+      </div>
+      <p>Для составных условий:</p>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Скопировать</button>
+        <pre><code>{
+  "all": [
+    { "type": "mission.completed", "id": "ash-outskirts", "scope": "humans" },
+    { "type": "document.found", "id": "drill_shaft_7", "scope": "humans" }
+  ],
+  "grant": "studied"
+}</code></pre>
+      </div>
+      <p>Поддерживаются <code class="inline-code">all</code>, <code class="inline-code">any</code>, <code class="inline-code">not</code>; проверка выполняется над журналом фактов, а не над DOM-состоянием.</p>
+    </section>
+
+    <!-- РАЗДЕЛ 6 -->
+    <section id="sec-6" class="section-card">
+      <h2>6. Схема данных, прогресс и связи</h2>
+
+      <h3>6.1. Разделение контента и прогресса</h3>
+      <p>Контент неизменяем и поставляется с игрой. Прогресс игрока хранит только факты открытия, прочтения и пользовательские настройки:</p>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Скопировать</button>
+        <pre><code>{
+  "version": 1,
+  "campaigns": {
+    "humans": {
+      "facts": [
+        { "type": "character.met", "id": "edric", "at": 12.4 },
+        { "type": "mission.objective_completed", "id": "ash-outskirts.scout", "at": 812.0 }
+      ],
+      "entries": {
+        "character.edric": { "status": "discovered", "read": true },
+        "location.ash_outskirts": { "status": "studied", "read": false }
+      }
+    }
+  },
+  "settings": { "notifications": true, "lastSection": "locations", "lastEntry": "location.ash_outskirts" }
+}</code></pre>
+      </div>
+      <p><code class="inline-code">facts</code> — источник истины для пересчёта статусов. Кэш <code class="inline-code">entries</code> ускоряет загрузку, но может быть восстановлен. Нельзя хранить в сохранении заранее раскрытые тексты.</p>
+
+      <h3>6.2. Граф связей</h3>
+      <p>Связь направленная и содержит:</p>
+      <ul>
+        <li><code class="inline-code">to</code> — ID целевой записи;</li>
+        <li><code class="inline-code">kind</code> — <code class="inline-code">member</code>, <code class="inline-code">located_in</code>, <code class="inline-code">appears_in</code>, <code class="inline-code">causes</code>, <code class="inline-code">related_to</code>, <code class="inline-code">uses</code>, <code class="inline-code">built_by</code>, <code class="inline-code">contrasts_with</code>;</li>
+        <li><code class="inline-code">minStatus</code> — минимальный статус, при котором связь видима;</li>
+        <li>опционально <code class="inline-code">scope</code> и <code class="inline-code">spoilerTier</code>.</li>
+      </ul>
+      <p>Граф строится только из узлов со статусом не ниже требуемого. На экране показываются максимум 20 ближайших доступных узлов; остальные связи открываются через фильтр, чтобы не перегружать Canvas.</p>
+
+      <h3>6.3. Хронология</h3>
+      <p>Хронология — отдельный режим просмотра, а не ещё один раздел. Каждая точка имеет <code class="inline-code">dateLabel</code>, <code class="inline-code">sortKey</code>, <code class="inline-code">eventId</code>, <code class="inline-code">visibility</code>, <code class="inline-code">perspective</code> и ссылки. Если точная дата не утверждена, используется <code class="inline-code">dateLabel: "дата не указана"</code>, а <code class="inline-code">sortKey</code> задаётся только Antigravity. Не угадывать даты по порядку файлов.</p>
+      <p>Режимы:</p>
+      <ul>
+        <li>лента по доступным событиям;</li>
+        <li>группировка по эпохам/главам, если они утверждены;</li>
+        <li>фильтр по кампании и фракционной перспективе;</li>
+        <li>открытие события с переходом к связанным местам и персонажам.</li>
+      </ul>
+
+      <h3>6.4. Схема связи с миссиями и событиями</h3>
+      <p>Миссия публикует доменные события через адаптер, например:</p>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Скопировать</button>
+        <pre><code>codexBus.emit({
+  type: 'mission.objective_completed',
+  missionId: 'ash-outskirts',
+  objectiveId: 'scout',
+  campaign: 'humans',
+  payload: { at: [38, 40] }
+});</code></pre>
+      </div>
+      <p>Кодекс подписывается на эти события, записывает факт один раз, пересчитывает доступность и создаёт уведомление. В текущей миссии идентификаторы целей уже существуют: <code class="inline-code">scout</code>, <code class="inline-code">supply</code>, <code class="inline-code">fortify</code>, <code class="inline-code">muster</code>, <code class="inline-code">outpost</code>. Они должны использоваться как технические ключи, без изменения сценарной логики.</p>
+      <p>Сопоставление первой миссии:</p>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Событие игры</th>
+              <th>Возможный результат Кодекса</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>начало <code class="inline-code">ash-outskirts</code></td>
+              <td>доступен безопасный вводный лист миссии</td>
+            </tr>
+            <tr>
+              <td>цель <code class="inline-code">scout</code></td>
+              <td>обнаружение Пепельного брода и связанной локации</td>
+            </tr>
+            <tr>
+              <td>наблюдение юнита Нерубов</td>
+              <td>обнаружение соответствующих записей существ/юнитов</td>
+            </tr>
+            <tr>
+              <td>цель <code class="inline-code">fortify</code></td>
+              <td>обнаружение восточного выхода/башни, если это разрешит канон</td>
+            </tr>
+            <tr>
+              <td>уничтожение <code class="inline-code">outpost</code></td>
+              <td>событие и объект открываются только на заданном Antigravity уровне</td>
+            </tr>
+            <tr>
+              <td>завершение миссии</td>
+              <td>изучение миссионной записи и разрешённых последствий</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Эта таблица — техническая схема, не готовый сюжетный текст. Условия конкретных страниц утверждаются владельцем лора.</p>
+    </section>
+
+    <!-- РАЗДЕЛ 7 -->
+    <section id="sec-7" class="section-card">
+      <h2>7. Технические требования для Canvas 2D и веб-архитектуры</h2>
+
+      <h3>7.1. Интеграция без смены движка</h3>
+      <ul>
+        <li>Не использовать Phaser и не переносить игру на другой движок.</li>
+        <li>Сохранить существующий Canvas 2D Renderer, Game, Hud, MissionHud и фиксированный такт мира.</li>
+        <li>Кодекс реализовать как отдельный UI-модуль/режим поверх текущего браузерного жизненного цикла; симуляция не должна импортировать контентный UI.</li>
+        <li>Правила открытия должны быть доступны без Canvas, чтобы их можно было тестировать в Node.</li>
+        <li>Контент загрузить локальными JSON/ES-модулями без CDN и без обязательного backend для одиночной локальной игры.</li>
+        <li>Использовать существующие стили SILKFRONT как основу, но не смешивать архивный экран с боевой панелью.</li>
+      </ul>
+
+      <h3>7.2. Предлагаемые модули</h3>
+      <ul>
+        <li><code class="inline-code">src/codex/content.js</code> — индекс утверждённых записей;</li>
+        <li><code class="inline-code">src/codex/reducer.js</code> — чистые переходы состояния;</li>
+        <li><code class="inline-code">src/codex/unlock-rules.js</code> — декларативные условия;</li>
+        <li><code class="inline-code">src/codex/store.js</code> — загрузка/сохранение прогресса;</li>
+        <li><code class="inline-code">src/codex/view.js</code> — отрисовка архивного экрана в Canvas или существующий DOM-слой, если он не нарушает архитектуру;</li>
+        <li><code class="inline-code">src/codex/links.js</code> — фильтрация графа доступных связей;</li>
+        <li><code class="inline-code">src/codex/index.js</code> — публичный фасад <code class="inline-code">open</code>, <code class="inline-code">close</code>, <code class="inline-code">emit</code>, <code class="inline-code">getState</code>.</li>
+      </ul>
+      <p>Названия примерные: перед реализацией сверить с текущей структурой проекта. Не добавлять модули в рамках этой спецификации.</p>
+
+      <h3>7.3. Сохранение</h3>
+      <p>Для одиночной игры базовый вариант — <code class="inline-code">localStorage</code> с версией ключа, например <code class="inline-code">silkfront.codex.v1</code>. Сохранение выполняется после подтверждённого факта и при закрытии Кодекса. Нужны:</p>
+      <ul>
+        <li>миграция версии прогресса;</li>
+        <li>защита от битого JSON с безопасным сбросом к пустому прогрессу;</li>
+        <li>отсутствие больших изображений в сохранении;</li>
+        <li>отдельный режим очистки Кодекса только в настройках разработчика/тестовой сборки;</li>
+        <li>тест на повторный запуск и восстановление бейджей.</li>
+      </ul>
+      <p>Backend/онлайн-синхронизация сейчас не требуется. Если появятся профили пользователя, <code class="inline-code">CodexStore</code> должен получить абстрактный адаптер, но контентный контракт менять не нужно.</p>
+
+      <h3>7.4. Доступность и производительность</h3>
+      <ul>
+        <li>Все кнопки имеют текстовую метку или ARIA-label.</li>
+        <li>Контраст текста и статусов проверяется на тёмной палитре.</li>
+        <li>Клавиатурный фокус видим.</li>
+        <li>Текст не зашивается в изображение.</li>
+        <li>Не перерисовывать полный граф на каждый кадр; перерисовывать страницу при изменении состояния/прокрутки.</li>
+        <li>Большие изображения загружать лениво и освобождать при закрытии просмотрщика.</li>
+        <li>Не блокировать игровой цикл при чтении контента.</li>
+        <li>На мобильной ширине сохранять читаемый размер текста, а не уменьшать всю страницу до миниатюры.</li>
+      </ul>
+    </section>
+
+    <!-- РАЗДЕЛ 8 -->
+    <section id="sec-8" class="section-card">
+      <h2>8. Контентный процесс и контроль канона</h2>
+      <ol>
+        <li>Antigravity передаёт запись с ID, утверждённым текстом, уровнем спойлера, источником и условиями открытия.</li>
+        <li>Редактор фиксирует статус <code class="inline-code">approved</code> и проверяет терминологию («Нерубы» против «Древней Колонии»).</li>
+        <li>Claude готовит только согласованные графические материалы по брифу записи.</li>
+        <li>Sharrowkin подключает запись к индексам и событиям, не изменяя сюжетный смысл.</li>
+        <li>Тесты проверяют ID, ссылки, статусы, спойлерные границы и восстановление сохранения.</li>
+        <li>Визуальная проверка проверяет страницу Кодекса в браузере и не заменяет проверку канона.</li>
+      </ol>
+      <p>У каждой записи должна быть строка источника: путь/документ, версия, владелец и дата ревизии. При конфликте текущий утверждённый реестр и прямое решение владельца лора важнее старого кэша.</p>
+    </section>
+
+    <!-- РАЗДЕЛ 9 -->
+    <section id="sec-9" class="section-card">
+      <h2>9. Демонстрационный контент на подтверждённых фактах</h2>
+      <p>Ниже приведены не финальные художественные тексты, а безопасные демонстрационные записи для проверки структуры. Они не должны расширяться догадками.</p>
+
+      <h3>9.1. world.aethyr</h3>
+      <ul>
+        <li>Раздел: Мир Aethyr.</li>
+        <li>Статус на старте: <code class="inline-code">discovered</code> — только название мира и нейтральная вводная.</li>
+        <li>Изучение: после первого брифинга кампании, если это подтвердит сценарный контракт.</li>
+        <li>Связи: <code class="inline-code">faction.order_last_light</code>, <code class="inline-code">faction.nerubians</code>, <code class="inline-code">mission.ash_outskirts</code>.</li>
+        <li>Иллюстрация: нейтральная титульная страница без закрытой карты.</li>
+        <li>Запрещено добавлять без Antigravity: происхождение мира, окончательную космологию, поздние тайны.</li>
+      </ul>
+
+      <h3>9.2. faction.order_last_light</h3>
+      <ul>
+        <li>Название: Орден Последнего Света.</li>
+        <li>Подтверждённый факт: человеческая игровая фракция.</li>
+        <li>Обнаружение: старт/брифинг миссии за людей.</li>
+        <li>Изучение: после утверждённого фракционного вводного материала.</li>
+        <li>Связи: Эдрик, «Пепельная окраина», человеческие юниты и здания — каждый через отдельное условие.</li>
+        <li>Иллюстрация: утверждённая эмблема или фракционный разделитель.</li>
+      </ul>
+
+      <h3>9.3. faction.nerubians</h3>
+      <ul>
+        <li>Название: Нерубы.</li>
+        <li>Подтверждённый факт: вторая игровая фракция арахнидов.</li>
+        <li>Обнаружение: наблюдение первого юнита Нерубов или сюжетное знакомство.</li>
+        <li>Изучение: после разрешённого фракционного события.</li>
+        <li>Связь с <code class="inline-code">faction.ancient_colony</code>: <code class="inline-code">related_to</code> с пояснением уровня термина только после допуска; фракция не переименовывается в цивилизацию.</li>
+        <li>Иллюстрация: силуэт/утверждённый юнит, если он уже обнаружен.</li>
+      </ul>
+
+      <h3>9.4. character.edric</h3>
+      <ul>
+        <li>Название: Эдрик.</li>
+        <li>Подтверждённый факт: инквизитор Ордена.</li>
+        <li>Обнаружение: первое знакомство в миссии «Пепельная окраина».</li>
+        <li>Изучение: после события, которое Antigravity обозначит как достаточное для расширенного профиля.</li>
+        <li>Не показывать заранее: биографию, внутреннюю арку, будущие решения и отношения, если они ещё не открыты.</li>
+        <li>Иллюстрация: портрет только после передачи и утверждения Claude/Antigravity.</li>
+      </ul>
+
+      <h3>9.5. character.arachna</h3>
+      <ul>
+        <li>Название: Арахна.</li>
+        <li>Подтверждённый факт: Матриарх Нерубов.</li>
+        <li>Обнаружение: первое разрешённое знакомство с персонажем или запись из кампании Нерубов.</li>
+        <li>Изучение: отдельное событие знакомства; не открывать автоматически из факта существования фракции.</li>
+        <li>Иллюстрация: портрет/символ только с разрешённым уровнем раскрытия.</li>
+      </ul>
+
+      <h3>9.6. location.ash_outskirts</h3>
+      <ul>
+        <li>Название: Пепельная окраина.</li>
+        <li>Подтверждённый факт: первая игровая сюжетная миссия.</li>
+        <li>Обнаружение: открытие брифинга или начало миссии.</li>
+        <li>Изучение: завершение миссии, если это утверждено условием кампании.</li>
+        <li>Связи: <code class="inline-code">mission.ash_outskirts</code>, Пепельный брод, Цитадель и передовой Инкубатор — по отдельным условиям.</li>
+        <li>Иллюстрация: карта миссии только в пределах уже доступных объектов.</li>
+      </ul>
+
+      <h3>9.7. mission.ash_outskirts</h3>
+      <ul>
+        <li>Название: «Пепельная окраина».</li>
+        <li>Обнаружение: доступен брифинг.</li>
+        <li>Минимально видимый контракт: сохранить Цитадель; разведать Пепельный брод; наладить снабжение; укрепить восточный выход; обучить подкрепление; уничтожить передовой Инкубатор.</li>
+        <li>Изучение: завершение миссии.</li>
+        <li>Связи: только с теми локациями, юнитами, персонажами и событиями, которые уже открыты по фактам.</li>
+        <li>Важно: Кодекс не превращает цели миссии в дополнительный сюжет и не раскрывает будущие последствия.</li>
+      </ul>
+
+      <h3>9.8. term.nerubians</h3>
+      <ul>
+        <li>Термин: Нерубы.</li>
+        <li>Краткое определение: название второй игровой фракции и разумных арахнидов Aethyr.</li>
+        <li>Связь с Древней Колонией: отдельная запись с отдельным уровнем значения; текст утверждает Antigravity.</li>
+        <li>Иллюстрация: не обязательна.</li>
+      </ul>
+    </section>
+
+    <!-- РАЗДЕЛ 10 -->
+    <section id="sec-10" class="section-card">
+      <h2>10. Что можно реализовать уже сейчас</h2>
+      <ol>
+        <li>Спроектировать экран Кодекса, восемь вкладок, список, страницу записи, просмотрщик изображений, хронологию и граф доступных связей.</li>
+        <li>Создать контентный JSON-схему и валидатор обязательных полей без добавления игрового лора.</li>
+        <li>Реализовать чистый <code class="inline-code">CodexState</code> с тремя статусами, фактами, бейджами новых записей и <code class="inline-code">localStorage</code>-адаптером.</li>
+        <li>Подключить демонстрационные записи только из подтверждённых элементов: Aethyr, Орден, Нерубы, Эдрик, Арахна и «Пепельная окраина».</li>
+        <li>Добавить адаптер событий для уже существующих идентификаторов первой миссии, не меняя её правила и цели.</li>
+        <li>Сделать UI-тесты навигации, поиск только по доступным данным, фильтры и восстановление прогресса.</li>
+        <li>Сделать Canvas 2D/браузерную проверку паузы, открытия и закрытия Кодекса во время миссии.</li>
+      </ol>
+      <p>Это не означает, что финальные тексты, портреты или все поздние события уже готовы.</p>
+    </section>
+
+    <!-- РАЗДЕЛ 11 -->
+    <section id="sec-11" class="section-card">
+      <h2>11. Данные, которые необходимо получить от Antigravity</h2>
+      <ol>
+        <li>Финальный список записей по восьми разделам с постоянными ID.</li>
+        <li>Для каждой записи: утверждённое русское название, английское написание при необходимости, тип, фракция и владелец.</li>
+        <li>Точный текст уровней <code class="inline-code">discovered</code> и <code class="inline-code">studied</code>, включая допустимые сокращённые версии.</li>
+        <li>Матрица спойлеров: какой факт доступен после какой миссии, встречи, локации, находки или сюжетного события.</li>
+        <li>Авторитетный список событий и их сортировка в хронологии; точные даты только там, где они утверждены.</li>
+        <li>Перспектива каждой записи: общая, Орден, Нерубы, обе или недоступная до объединённого условия.</li>
+        <li>Список связей между персонажами, местами, фракциями, событиями, юнитами и объектами.</li>
+        <li>Порог, после которого две версии одного события можно показывать рядом.</li>
+        <li>Утверждённые цитаты, документы, подписи и названия артефактов.</li>
+        <li>Статус каждого спорного материала: канон, предложено, удалено или ожидает решения.</li>
+        <li>Канонические координаты/карты, если они действительно должны быть видны в Кодексе.</li>
+        <li>Правило сохранения Кодекса между кампаниями и между повторными прохождениями.</li>
+      </ol>
+      <p>Пока эти данные не переданы, поздние записи должны оставаться <code class="inline-code">pending</code>, а не заполняться предположениями.</p>
+    </section>
+
+    <!-- РАЗДЕЛ 12 -->
+    <section id="sec-12" class="section-card">
+      <h2>12. Графические материалы, которые потребуются от Claude</h2>
+      <ol>
+        <li>Обложка Кодекса и набор фоновых текстур архивной книги.</li>
+        <li>Восемь иконок разделов и состояния: обычное, новое, обнаружено, изучено, заблокировано.</li>
+        <li>Нейтральные рамки страницы, закладки, печати, разделители и маркеры источника.</li>
+        <li>Карточки/портреты Эдрика и Арахны после утверждения их финальных визуальных брифов.</li>
+        <li>Иллюстрации разрешённых локаций, фракционных символов, зданий, артефактов и терминов по реестру Antigravity.</li>
+        <li>Карта и элементы хронологии: линии, узлы, стрелки, маркеры перспективы.</li>
+        <li>Простой набор состояний для пустой, обнаруженной и изученной страницы.</li>
+        <li>Спецификация каждого ассета: ID, размер, прозрачность, опорная точка, масштаб Canvas, фон и допустимый уровень спойлера.</li>
+        <li>Совместимость с холодной готической эстетикой SILKFRONT, существующей палитрой и правилом без крови/расчленения.</li>
+      </ol>
+      <p>Готовые ассеты нельзя считать автоматически принятыми: перед интеграцией проверить масштаб, прозрачность, опоры, перспективу и визуальную совместимость.</p>
+    </section>
+
+    <!-- РАЗДЕЛ 13 -->
+    <section id="sec-13" class="section-card">
+      <h2>13. Технические задачи для Sharrowkin и Antigravity</h2>
+
+      <h3>Sharrowkin</h3>
+      <ul>
+        <li>реализовать <code class="inline-code">CodexStore</code>, <code class="inline-code">CodexReducer</code>, проверку схемы и локальное сохранение;</li>
+        <li>создать мост <code class="inline-code">codexBus</code> к событиям Game, MissionHud и сценария, не помещая правила Кодекса в симуляцию;</li>
+        <li>подключить существующие mission/objective ID первой миссии;</li>
+        <li>реализовать экран, навигацию, поиск, фильтры, просмотрщик, хронологию и доступный граф;</li>
+        <li>обеспечить безопасную паузу и возврат в Canvas 2D RTS;</li>
+        <li>написать модульные тесты для условий, статусов, ссылок и миграции сохранения;</li>
+        <li>выполнить браузерную проверку: открыть Кодекс, прочитать запись, закрыть, продолжить/сохранить паузу, повторно открыть;</li>
+        <li>проверить отсутствие спойлеров в поиске, графе, счётчиках и уведомлениях;</li>
+        <li>не менять баланс, ассеты юнитов, координаты миссии и существующую логику боя.</li>
+      </ul>
+
+      <h3>Antigravity</h3>
+      <ul>
+        <li>передать утверждённый content pack по разделам и событиям;</li>
+        <li>назначить <code class="inline-code">spoilerTier</code> и точные условия каждой записи;</li>
+        <li>проверить все имена, титулы, переводы, даты и фракционные перспективы;</li>
+        <li>согласовать тексты обнаружения и изучения;</li>
+        <li>принять или отклонить демонстрационные связи и визуальные брифы;</li>
+        <li>поддерживать версию канона и журнал изменений, чтобы старые сохранения Кодекса мигрировали предсказуемо.</li>
+      </ul>
+    </section>
+
+    <!-- РАЗДЕЛ 14 -->
+    <section id="sec-14" class="section-card">
+      <h2>14. Критерии приёмки</h2>
+      <p>Кодекс считается готовым к интеграционному приёмочному тесту, если:</p>
+      <ul>
+        <li>присутствуют все восемь разделов;</li>
+        <li>неизвестные записи не видны через список, поиск, граф и хронологию;</li>
+        <li>обнаруженная запись не показывает текст уровня изучения;</li>
+        <li>изучение сохраняется после перезапуска;</li>
+        <li>событие открытия срабатывает один раз и создаёт уведомление;</li>
+        <li>повторное чтение не меняет статус и не дублирует уведомление;</li>
+        <li>ссылки ведут только на доступные записи;</li>
+        <li>фракции «Нерубы» и «Древняя Колония» не смешаны в ID и подписях;</li>
+        <li>миссия «Пепельная окраина» связана с Кодексом через существующие цели, но её игровой контракт не изменён;</li>
+        <li>Кодекс открывается и закрывается в существующей Canvas 2D-архитектуре без Phaser;</li>
+        <li>контент с <code class="inline-code">canon.review = pending</code> не попадает в релизный набор;</li>
+        <li>документы и сохранения повреждённого/старого формата обрабатываются без потери основного игрового запуска.</li>
+      </ul>
+
+      <div class="summary-footer">
+        <strong>Итоговая граница:</strong> сейчас можно реализовать каркас, состояния, события, UI и демонстрационный набор. Полный лор, поздние раскрытия, финальные портреты и окончательные связи должны поступить от Antigravity и Claude в указанном порядке.
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       ЭТАП 3: СКРИПТ ДЛЯ КОПИРОВАНИЯ БЛОКОВ КОДА В ОДИН КЛИК
+       ======================================================================== -->
+  <script>
+    function copyCode(button) {
+      // Находим блок <code> внутри того же контейнера, где находится нажатая кнопка
+      const codeElement = button.parentElement.querySelector('code');
+      const textToCopy = codeElement.innerText;
+
+      // Копируем текст в буфер обмена браузера
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        const originalText = button.innerText;
+        button.innerText = 'Скопировано!';
+        
+        // Через 2 секунды возвращаем исходную надпись на кнопке
+        setTimeout(() => {
+          button.innerText = originalText;
+        }, 2000);
+      });
+    }
+  </script>
+
+</body>
+</html>
