@@ -1,1 +1,0 @@
-[{"kind":"end"},{"kind":"assertText","selector":"#end-title","text":"Победа"},{"kind":"assertText","selector":"#end-stats","text":"Схватка против ИИ"}]
